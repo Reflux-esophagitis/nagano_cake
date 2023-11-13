@@ -11,8 +11,6 @@ ADMIN_TEST_PASSWORD = "adminadmin"
 
 Admin.create!(
   email: ADMIN_TEST_EMAIL,
-  encrypted_password: ADMIN_TEST_PASSWORD,
   password: ADMIN_TEST_PASSWORD,
-  password_confirmation: ADMIN_TEST_PASSWORD,
 )
 puts "[Seeds] Created Admin user"
