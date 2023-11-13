@@ -1,2 +1,12 @@
 <h1>Admin::Homes#top</h1>
 <p>Find me in app/views/admin/homes/top.html.erb</p>
+
+<div>
+  <% # テスト用のログイン/ログアウトリンク %>
+
+  <% if admin_signed_in? %>
+    <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
+  <% else %>
+    <%= link_to "管理者ログイン", new_admin_session_path %>
+  <% end %>
+</div>
