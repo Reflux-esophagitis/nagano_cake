@@ -1,2 +1,14 @@
 <h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% @items.each do |item| %>
+        <%= image_tag item.get_image(100,100) %>
+        <%= link_to item_path(item) do %><%= item.name %><% end %>
+        <%= item.introduction %>
+        <%= item.non_taxed_price %>
+        <%= item.is_active %>
+      <% end %>
+    </div>
+  </div>
+</div>
