@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  root to: "homes#tpp"
+  root to: "homes#top"
   get "about" => "homes#about"
 
   scope module: :public do
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :cart_items, only: %i[idnex update create destroy] do
+    resources :cart_items, only: %i[index update create destroy] do
       collection do
         delete :destroy_all
       end
@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[new index show create] do
       member do
         get :confirm
-        get :complate
+        get :complete
       end
     end
 
@@ -48,6 +48,6 @@ Rails.application.routes.draw do
 
     resources :orders, only: %i[show update]
 
-    resources :orede_details, only: :update
+    resources :order_details, only: :update
   end
 end
