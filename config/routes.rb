@@ -2,11 +2,53 @@ Rails.application.routes.draw do
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: "public/sessions"
   }
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
 
+  root to: "homes#tpp"
+  get "about" => "homes#about"
+
+  scope module: :public do
+    resources :items, only: %i[index show]
+
+    resources :customers, only: %i[show edit update] do
+      member do
+        get :confirm
+        patch :leave
+      end
+    end
+
+    resources :cart_items, only: %i[idnex update create destroy] do
+      collection do
+        delete :destroy_all
+      end
+    end
+
+    resources :orders, only: %i[new index show create] do
+      member do
+        get :confirm
+        get :complate
+      end
+    end
+
+    resources :addresses, except: %i[new show]
+  end
+
+  namespace :admin do
+    root "homes#top"
+
+    resources :items, except: :destroy
+
+    resources :genres, only: %i[index create edit update]
+
+    resources :customers, only: %i[index show edit update]
+
+    resources :orders, only: %i[show update]
+
+    resources :orede_details, only: :update
+  end
 end
