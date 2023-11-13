@@ -1,12 +1,13 @@
 <h1>Admin::Items#show</h1>
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col">-->
-<!--      %= image_tag @item.get_image(100,100) %>-->
-<!--      %= link_to @item_path(item) do %>%= item.name %>% end %>-->
-<!--      %= @item.introduction %>-->
-<!--      %= @item.non_taxed_price %>-->
-<!--      %= @item.is_active %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<!--編集中-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= image_tag @item.get_image(100,100) %>
+      <%= link_to admin_item_path(@item) do %><%= item.name %><% end %>
+      <%= @item.introduction %>
+      <%= @item.non_taxed_price %>
+      <%= @item.is_active %>
+    </div>
+  </div>
+</div>
