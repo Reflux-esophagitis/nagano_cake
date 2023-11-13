@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  root to: "homes#top"
-  get "about" => "homes#about"
+  root to: "public/homes#top"
+  get "about" => "public/homes#about"
 
   scope module: :public do
     resources :items, only: %i[index show]
