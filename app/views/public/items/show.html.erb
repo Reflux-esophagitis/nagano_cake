@@ -1,2 +1,13 @@
 <h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<!--編集中-->
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= image_tag @item.get_image(100,100) %>
+      <%= link_to @item_path(item) do %><%= item.name %><% end %>
+      <%= @item.introduction %>
+      <%= @item.non_taxed_price %>
+      <%= @item.is_active %>
+    </div>
+  </div>
+</div>
