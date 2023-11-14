@@ -1,6 +1,10 @@
 <div class="card">
   <div>
-    商品画像
+    <!--画像サイズは仮の数字です-->
+    <%= image_tag item.image || "", size: "100x100" %>
+  </div>
+  <div>
+    <%= item.introduction %>
   </div>
   <div>
     <%= item.name %>
