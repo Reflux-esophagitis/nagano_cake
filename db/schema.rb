@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_13_075438) do
+ActiveRecord::Schema.define(version: 2023_11_14_024345) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_11_13_075438) do
     t.string "last_name_kana", null: false
     t.string "zip_code", null: false
     t.string "address", null: false
-    t.string "tel", null: false
+    t.string "telephone_number", null: false
     t.boolean "is_active", default: true, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
