@@ -39,8 +39,8 @@ module ApplicationHelper
       {
         path: destroy_admin_session_path,
         text: "ログアウト",
-        method: :delete,
-      },
+        method: :delete
+      }
     ]
   end
 
@@ -61,8 +61,8 @@ module ApplicationHelper
       {
         path: destroy_customer_session_path,
         text: "ログアウト",
-        method: :delete,
-      },
+        method: :delete
+      }
     ]
   end
 
@@ -83,7 +83,7 @@ module ApplicationHelper
       {
         path: new_customer_session_path,
         text: "ログイン"
-      },
+      }
     ]
   end
 end
