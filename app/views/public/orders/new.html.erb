@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-md-10 mx-auto">
-      <%= form_with model: @order, url: orders_path, local: true do |f| %>
+      <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
         <div class="payment_method">
           <h4>支払い方法</h4>
             <div class="ml-5">
@@ -41,20 +41,18 @@
             <%= f.radio_button :address_method, 2 %>
             <%= f.label :address_method, "新しいお届け先" %>
             <div class="new_address_form ml-3">
-              <%= f.fields_for :address do |address| %>
-                <div class="form-group">
-                  <%= f.label :zip_code, "郵便番号(ハイフン無し)" %>
-                  <%= f.text_field :zip_code %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :address, "住所" %>
-                  <%= f.text_field :address %>
-                </div>
-                <div class="form-group">
-                  <%= f.label :name, "宛名" %>
-                  <%= f.text_field :name %>
-                </div>
-              <% end %>
+              <div class="form-group">
+                <%= f.label :zip_code, "郵便番号(ハイフン無し)" %>
+                <%= f.text_field :zip_code %>
+              </div>
+              <div class="form-group">
+                <%= f.label :address, "住所" %>
+                <%= f.text_field :address %>
+              </div>
+              <div class="form-group">
+                <%= f.label :name, "宛名" %>
+                <%= f.text_field :name %>
+              </div>
             </div>
           </div>
           <div class="text-center">
