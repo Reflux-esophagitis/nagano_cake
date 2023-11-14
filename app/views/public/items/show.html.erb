@@ -4,10 +4,19 @@
   <div class="row">
     <div class="col">
       <%= image_tag @item.get_image(100,100) %>
-      <%= link_to @item_path(item) do %><%= item.name %><% end %>
+      <%= link_to item_path(@item) do %><%= @item.name %><% end %>
       <%= @item.introduction %>
       <%= @item.non_taxed_price %>
-      <%= @item.is_active %>
+      <% if @item.is_active %>
+         <p>販売中</p>
+       <% else %>
+         <p>販売停止</p>
+      <% end %>
+      <%= form_with model: @cart_item do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.select :amount, (1..10), include_blank: "個数選択" %>
+        <%= f.submit 'カートに追加' %>
+      <% end %>
     </div>
   </div>
 </div>
