@@ -1,18 +1,35 @@
-<h2>注文情報入力</h2>
-
-<%= form_with model: order, url: confirm_order_path(order) %>
-  <div class="payment_method">
-    <h3>支払い方法</h3>
-      <div>
-        <%= f.radio_button :payment_method, 0 %>
-        <%= f.label :payment_method, "クレジットカード" %>
-      </div>
-      <div>
-        <%= f.radio_button :payment_method, 1 %>
-        <%= f.label :payment_method, "銀行振込" %>
-      </div>
+<div class="contaier">
+  <div class="row">
+    <h2 class="offset-2">注文情報入力</h2>
   </div>
-
-
-  <h3>お届け先</h3>
-<% end %>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <%= form_with model: @order, url: orders_path, local: true do |f| %>
+        <div class="payment_method">
+          <h3>支払い方法</h3>
+            <div>
+              <%= f.radio_button :payment_method, 0 %>
+              <%= f.label :payment_method, "クレジットカード" %>
+            </div>
+            <div>
+              <%= f.radio_button :payment_method, 1 %>
+              <%= f.label :payment_method, "銀行振込" %>
+            </div>
+        </div>
+        <div class="addresses">
+          <h3>お届け先</h3>
+          <div class="customer_address">
+            <%= f.radio_button :address_method, 0 %>
+            <%= f.label :address_method, "ご自身の住所" %>
+            <div class="customer_address">
+              〒<%= current_customer.zip_code %>
+              <%= current_customer.address %>  <br>
+              <!--後からfull_nameをメソッド化する-->
+              <%= current_customer.last_name %><%= current_customer.first_name %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
