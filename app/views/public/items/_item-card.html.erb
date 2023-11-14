@@ -4,10 +4,12 @@
     <%= image_tag item.image || "", size: "100x100" %>
   </div>
   <div>
-    <%= item.introduction %>
+    <%= link_to item_path(item) do %>
+      <%= item.name %>
+    <% end %>
   </div>
   <div>
-    <%= item.name %>
+    <%= item.introduction %>
   </div>
   <div>
     ￥<%= item.non_taxed_price.to_s(:delimited) %>
