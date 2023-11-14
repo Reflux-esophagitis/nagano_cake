@@ -24,13 +24,13 @@ class Public::OrdersController < ApplicationController
         redirect_to new_order_path
       else
         new_address = current_customer.address.create({
-          zip_code: params[zip_code],
-          address: params[address],
+          zip_code: params[:zip_code],
+          address: params[:address],
           name: params[:name]
         })
       end
     end
-    
+
   end
 
   def complete
