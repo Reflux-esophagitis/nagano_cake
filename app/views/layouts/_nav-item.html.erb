@@ -1,0 +1,9 @@
+<li class="nav-item mx-2">
+  <%= link_to item[:path], method: item[:method] || nil, class: "btn btn-outline-secondary" do %>
+    <%= item[:text] %>
+  <% end %>
+</li>
+<%
+  # itemハッシュからパス(`path`)とHTTPメソッド(`method`)を取得します。
+  # メソッドが指定されていない場合は`nil`を使用します。
+%>
