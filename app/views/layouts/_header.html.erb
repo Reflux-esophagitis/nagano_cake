@@ -1,19 +1,19 @@
 <header>
-  <div class="logo">
-    <%= link_to root_path do %>
-      ながのCAKE
-    <% end %>
-  </div>
-  <div>
-    <!--ようこそ、〇〇さん！-->
-  </div>
-  <div>
-    <nav>
-      <!-- 未ログイン時のナビのみ -->
-      <div>About</div>
-      <div>商品一覧</div>
-      <div>新規登録</div>
-      <div>ログイン</div>
-    </nav>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between">
+    <div class="logo">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        ながのCAKE
+      <% end %>
+    </div>
+    <div>
+      <% if customer_signed_in? %>
+        ようこそ、<%= current_customer.last_name %>さん！
+      <% end %>
+    </div>
+    <div>
+      <ul class="navbar-nav">
+        <%= render partial: "layouts/nav-item", collection: nav_items, as: :item %>
+      </ul>
+    </div>
+  </nav>
 </header>
