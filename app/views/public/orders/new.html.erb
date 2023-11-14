@@ -33,7 +33,7 @@
               <%= f.radio_button :address_method, 1 %>
               <%= f.label :address_method, "登録済住所から選択" %>
               <div>
-                <%= f.collection_select :address, @registered_addresses, :id, :zip_code %>
+                <%= f.collection_select :address, @registered_addresses, :id, "#{:zip_code + :address}" %>
               </div>
             </div>
           <% end %>
