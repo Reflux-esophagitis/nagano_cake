@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <%= image_tag @item.get_image(100,100) %>
+      <%= image_tag @item.image, size: "100x100" %>
       <%= link_to item_path(@item) do %><%= @item.name %><% end %>
       <%= @item.introduction %>
       <%= @item.non_taxed_price %>
