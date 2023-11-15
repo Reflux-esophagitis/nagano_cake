@@ -17,6 +17,27 @@ module ApplicationHelper
     end
   end
 
+  # 与えられた数値を日本円形式でフォーマットします。
+  # 小数点以下は丸められ、整数で表示されます。
+  # 通貨記号の表示/非表示を選択できます。
+  #
+  # @param number [Numeric] フォーマットする数値
+  # @param include_currency_symbol [Boolean] 円記号（￥）を表示する場合はtrue、非表示の場合はfalse
+  # @return [String] フォーマットされた通貨文字列
+  #
+  # 使用例：
+  #   to_jpy_format(1500.75, true) #=> "￥1,501"
+  #   to_jpy_format(1500.75, false) #=> "1,501"
+  def to_jpy_format(number, include_currency_symbol)
+    currency_symbol = include_currency_symbol ? "￥" : ""
+
+    number_to_currency(
+      number,
+      unit: currency_symbol,
+      precision: 0
+    )
+  end
+
   private
   def admin_nav_items
     [
