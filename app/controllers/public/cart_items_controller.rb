@@ -1,6 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @cart_items = current_customer.cart_items
     @total_price = CartItem.total_price(@cart_items)
   end
 
@@ -22,8 +22,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find_by(
-      customer_id: current_customer.id,
+    cart_item = current_customer.cart_items.find_by(
       item_id: params[:cart_item][:item_id]
     )
 
@@ -34,13 +33,20 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy
-    puts "destroy"
-    redirect_to cart_items_path
+    cart_item = current_customer.cart_items.find_by(item_id: params[:id])
+    if cart_item
+      item_name = cart_item.item.name
+      cart_item.destroy
+      redirect_to cart_items_path, notice: "#{item_name}を削除しました。"
+    else
+      # カート内アイテムが見つからなかったときの処理
+      redirect_to cart_items_path, alert: "選択した商品が見つかりませんでした。"
+    end
   end
 
   def destroy_all
-    puts "destroy_all"
-    redirect_to cart_items_path
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path, notice: "カートを空にしました。"
   end
 
   private
