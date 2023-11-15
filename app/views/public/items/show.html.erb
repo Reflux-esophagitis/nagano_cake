@@ -1,5 +1,4 @@
 <h1>Public::Items#show</h1>
-<!--編集中-->
 <div class="container">
   <div class="row">
     <div class="col">
@@ -12,10 +11,12 @@
        <% else %>
          <p>販売停止</p>
       <% end %>
-      <%= form_with model: @cart_item do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.select :amount, (1..10), include_blank: "個数選択" %>
-        <%= f.submit 'カートに追加' %>
+      <% if customer_signed_in? %>
+        <%= form_with model: @cart_item do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.select :amount, (1..10), include_blank: "個数選択" %>
+          <%= f.submit 'カートに追加' %>
+        <% end %>
       <% end %>
     </div>
   </div>
