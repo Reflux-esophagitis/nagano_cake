@@ -2,12 +2,36 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <% @items.each do |item| %>
-        <%= link_to admin_item_path(item) do %><%= item.name %><% end %>
-      <% end %>
-    </div>
-    <div class="col">
-      <%= link_to new_admin_item_path do %>新規登録<% end %>
-    </div>
+      <h2>商品一覧</h2>
+       <!--ボタンを変更の可能性につきリンクに新規投稿用と記載-->
+      <%= link_to new_admin_item_path do %>新規登録用<% end %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to admin_item_path(item) do %><%= item.name %><% end %></td>
+            <td><%= item.non_taxed_price %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+              <span>
+                <%= item.is_active ? "販売中" : "販売停止中" %>
+              </span>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
   </div>
 </div>
+
+
