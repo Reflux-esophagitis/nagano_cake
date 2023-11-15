@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total_price = CartItem.total_price(@cart_items)
   end
 
   def create

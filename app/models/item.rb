@@ -5,9 +5,8 @@ class Item < ApplicationRecord
 
   scope :active, -> { where(is_active: true) }
 
+  # 税込単価の計算
   def taxed_price
-    # 税込単価の計算
-    # 端数は切り捨てとした
-    (non_taxed_price * (1 + TAX_RATE)).truncate
+    non_taxed_price * (1 + TAX_RATE)
   end
 end
