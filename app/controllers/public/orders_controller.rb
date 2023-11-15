@@ -38,7 +38,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
-    @order.create_details
+    create_details(@order)
     redirect_to complete_orders_path
   end
 
@@ -67,11 +67,11 @@ class Public::OrdersController < ApplicationController
     # カートアイテムを注文詳細に変換
     # その後ログインユーザーのカートアイテムを全削除
     # トランザクションにて問題発生時にカートアイテムを消さない
-    def create_details
+    def create_details(order)
       ActiveRecord::Base.transaction do
-        cart_items = current_user.cart_items
+        cart_items = current_customer.cart_items
         cart_items.each do |cart_item|
-          self.order_details.create!({
+          order.order_details.create!({
             item_id: cart_item.item_id,
             amount: cart_item.amount,
             price: cart_item.subtotal
