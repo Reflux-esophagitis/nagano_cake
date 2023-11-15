@@ -23,11 +23,9 @@
             <td><%= item.non_taxed_price %></td>
             <td><%= item.genre.name %></td>
             <td>
-              <% if item.is_active %>
-                <p>販売中</p>
-              <% else %>
-                <p>販売停止中</p>
-              <% end %>
+              <span>
+                <%= item.is_active ? "販売中" : "販売停止中" %>
+              </span>
             </td>
           </tr>
           <% end %>
