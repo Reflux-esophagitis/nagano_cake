@@ -1,5 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    @total_price = CartItem.total_price(@cart_items)
   end
 
   def create
@@ -17,6 +19,28 @@ class Public::CartItemsController < ApplicationController
       cart_item.save
       redirect_to cart_items_path
     end
+  end
+
+  def update
+    cart_item = CartItem.find_by(
+      customer_id: current_customer.id,
+      item_id: params[:cart_item][:item_id]
+    )
+
+    selected_amount = params[:cart_item][:amount]
+    cart_item.update(amount: selected_amount)
+
+    redirect_to cart_items_path
+  end
+
+  def destroy
+    puts "destroy"
+    redirect_to cart_items_path
+  end
+
+  def destroy_all
+    puts "destroy_all"
+    redirect_to cart_items_path
   end
 
   private

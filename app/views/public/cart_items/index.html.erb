@@ -1,2 +1,84 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<section class="container">
+  <div class="d-flex justify-content-between">
+    <div class="h3">ショッピングカート</div>
+    <div>
+      <%= link_to destroy_all_cart_items_path, method: :delete, "data-confirm": "カートを空にしますか？", class: "btn btn-danger btn-sm" do %>
+        カートを空にする
+      <% end %>
+    </div>
+  </div>
+  <%= @test %>
+  <% if @cart_items.size == 0 %>
+    <p>
+      カートは空です。
+    </p>
+  <% else %>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+          <%
+            item = cart_item.item
+            taxed_price = item.taxed_price
+            amount = cart_item.amount
+          %>
+          <tr>
+            <td>
+              <!--画像サイズは仮の数字です-->
+              <%= image_tag item.image, size: "48x48" %>
+              <%= item.name %>
+            </td>
+            <td><%= to_jpy_format(taxed_price, false) %></td>
+            <td>
+              <%= form_with model: cart_item, method: :patch do |f| %>
+                <%= f.hidden_field :item_id, value: item.id %>
+                <div class="form-group d-flex align-items-center">
+                  <div>
+                    <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, {selected: cart_item.amount}, class: "form-control" %>
+                  </div>
+                  <%= f.button type: "submit", class: "btn btn-success mx-2" do %>
+                    変更
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+            <td><%= to_jpy_format(cart_item.subtotal, false) %></td>
+            <td>
+              <%= link_to cart_item_path(cart_item), method: :delete, "data-confirm": "#{item.name}を削除しますか？", class: "btn btn-danger btn-sm" do %>
+                削除する
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+  <div class="d-flex justify-content-between my-2">
+    <div>
+      <%= link_to root_path, class: "btn btn-primary" do %>
+        買い物を続ける
+      <% end %>
+    </div>
+    <div class="d-flex">
+      <div>
+        合計金額
+      </div>
+      <div>
+        <%= to_jpy_format(@total_price, false) %>
+      </div>
+    </div>
+  </div>
+  <div class="my-2 text-center">
+    <%= link_to new_order_path, class: "btn btn-success" do %>
+      情報入力に進む
+    <% end %>
+  </div>
+</section>
