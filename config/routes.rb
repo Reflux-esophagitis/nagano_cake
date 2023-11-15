@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about" => "public/homes#about"
+  get  '/customers/mypage', to: 'public/customers#show'
 
   scope module: :public do
     resources :items, only: %i[index show]
