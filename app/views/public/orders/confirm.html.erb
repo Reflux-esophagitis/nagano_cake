@@ -1,2 +1,31 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h3 class="offset-2">注文情報確認</h3>
+  </div>
+  <div class="row">
+    <div>
+      <%= render "order-item-table", items: @items %>
+    </div>
+    <div>
+      <%= render "order-price-table", order: @order %>
+    </div>
+  </div>
+  <div class="row">
+    <h4>支払方法</h4><p><%= @order.payment_method %></p>
+  </div>
+  <div class="row">
+    <h4>お届け先</h4><%= @order.full_address %>
+  </div>
+  <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :customer_id, value: @order.customer_id%>
+    <%= f.hidden_field :name, value: @order.name%>
+    <%= f.hidden_field :zip_code, value: @order.zip_code %>
+    <%= f.hidden_field :address, value: @order.address %>
+    <%= f.hidden_field :payment_method, value: @order.payment_method %>
+    <%= f.hidden_field :postage, value: @order.postage %>
+    <!--テスト用に定数に変更　-->
+    <%= f.hidden_field :total_price, value: 2000 %>
+    <!--%= f.hidden_field :total_price, value: @order.total_price %>-->
+    <%= f.submit %>
+  <% end %>
+</div>
