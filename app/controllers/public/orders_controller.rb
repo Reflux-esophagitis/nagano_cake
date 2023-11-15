@@ -14,7 +14,7 @@ class Public::OrdersController < ApplicationController
     @order.total_price = total_price(order_items)
     @order.customer_id = current_customer.id
     @order.postage = POSTAGE
-    case params[:address_method]
+    case params[:order][:address_method].to_i
     when 0
       @order.zip_code = current_customer.zip_code
       @order.address = current_customer.address
@@ -25,22 +25,22 @@ class Public::OrdersController < ApplicationController
       @order.address = registered_address.address
       @order.name = registered_address.name
     when 2
-      if params[:zip_code].blank? || params[:address].blank? || params[:name].blank?
+      if params[:order][:zip_code].blank? || params[:order][:address].blank? || params[:order][:name].blank?
         # flash[:error] = "配送先が入力されていません"
         redirect_to new_order_path
       else
         current_customer.address.create({
-          zip_code: params[:zip_code],
-          address: params[:address],
-          name: params[:name]
+          zip_code: params[:order][:zip_code],
+          address: params[:order][:address],
+          name: params[:order][:name]
         })
       end
     end
-    byebug
   end
 
   def create
-    @new_order = Order.new(order_params)
+    @order = Order.new(order_params)
+    @order.save
     redirect_to complete_orders_path
   end
 
