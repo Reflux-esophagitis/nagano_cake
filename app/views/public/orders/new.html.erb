@@ -19,7 +19,7 @@
         <div class="addresses">
           <h4>お届け先</h4>
           <div class="customer_address ml-5">
-            <%= f.radio_button :address_method, 0 %>
+            <%= f.radio_button :address_method, 0, checked: true %>
             <%= f.label :address_method, "ご自身の住所" %>
             <div class="customer_address ml-3">
               〒<%= current_customer.zip_code %>
