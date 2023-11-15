@@ -9,8 +9,4 @@ module Public::OrdersHelper
     end
   end
 
-  def full_address
-    "#{self.zip_code} #{self.address}"
-  end
-
 end
