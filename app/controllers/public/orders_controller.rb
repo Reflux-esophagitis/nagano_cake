@@ -58,7 +58,7 @@ class Public::OrdersController < ApplicationController
     def total_price(cart_items)
       total_price = 0
       cart_items.each do |cart_item|
-        price, amount = (cart_item.item[:price]*TAX_FEE).to_i, cart_item.item[:amount]
+        price, amount = (cart_item.item[:non_taxed_price] * TAX_FEE), cart_item[:amount]
         total_price += price * amount
       end
     end
