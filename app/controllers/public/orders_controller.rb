@@ -1,7 +1,4 @@
 class Public::OrdersController < ApplicationController
-  # 定数の保管場所は相談
-  POSTAGE = 800
-  TAX_FEE = 1.08
 
   def new
     @order = Order.new
@@ -11,7 +8,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new
     order_items = current_customer.cart_items
-    @order.total_price = total_price(order_items)
+    @order.total_price = CartItem.total_price(order_items)
     @order.customer_id = current_customer.id
     @order.postage = POSTAGE
     case params[:order][:address_method].to_i
@@ -55,14 +52,6 @@ class Public::OrdersController < ApplicationController
   end
 
   private
-
-    def total_price(cart_items)
-      total_price = 0
-      cart_items.each do |cart_item|
-        price, amount = (cart_item.item[:non_taxed_price] * TAX_FEE), cart_item[:amount]
-        total_price += price * amount
-      end
-    end
 
     def order_params
       params.require(:order).permit(
