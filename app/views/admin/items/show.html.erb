@@ -11,9 +11,9 @@
       <%= link_to edit_admin_item_path(@item) do %>編集<% end %>
       <%= form_with model: @item do |f| %>
         <%= f.radio_button :is_active, true %>
-        <%= f.label :is_active, "販売中", {value: :true, class: "d-inline-block" %>
+        <%= f.label :is_active, "販売中", value: :true, class: "d-inline-block" %>
         <%= f.radio_button :is_active, false %>
-        <%= f.label :is_active, "販売停止中", {value: :false, class: "d-inline-block" %>
+        <%= f.label :is_active, "販売停止中", value: :false, class: "d-inline-block" %>
       <% end %>
     </div>
   </div>
