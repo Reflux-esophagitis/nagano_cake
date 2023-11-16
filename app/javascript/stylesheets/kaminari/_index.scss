@@ -1,0 +1,19 @@
+.pagination {
+  span {
+    display: inline-block;
+    text-align: center;
+  }
+
+  a {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .page {
+    width: 1.5rem;
+  }
+
+  .first, .prev, .next, .last {
+    padding: 0 0.25rem;
+  }
+}

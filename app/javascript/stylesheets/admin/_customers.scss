@@ -1,0 +1,12 @@
+$status-color-active: #22c55e;
+$status-color-inactive: #9ca3af;
+
+.customer-status {
+  &.active {
+    color: $status-color-active;
+  }
+
+  &.inactive {
+    color: $status-color-inactive;
+  }
+}
