@@ -12,26 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
-            <tr>
-              <td>
-                <%= customer.id %>
-              </td>
-              <td>
-                <%= link_to admin_customer_path(customer), class: "d-inline-block" do %>
-                  <%= customer.full_name %>
-                <% end %>
-              </td>
-              <td>
-                <%= customer.email %>
-              </td>
-              <td>
-                <span class="customer-status <%= customer.is_active ? "active" : "inactive" %> d-inline-block font-weight-bold">
-                  <%= customer.is_active ? "有効" : "退会" %>
-                </span>
-              </td>
-            </tr>
-          <% end %>
+          <%= render partial: "customers_table", collection: @customers, as: :customer %>
         </tbody>
       </table>
       <div class="d-flex justify-content-center">
