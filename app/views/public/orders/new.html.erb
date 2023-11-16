@@ -24,7 +24,6 @@
             <div class="customer_address ml-3">
               〒<%= current_customer.zip_code %>
               <%= current_customer.address %>  <br>
-              <!--後からfull_nameをメソッド化する-->
               <%= current_customer.full_name %>
             </div>
           </div>
@@ -33,8 +32,7 @@
               <%= f.radio_button :address_method, 1 %>
               <%= f.label :address_method, "登録済住所から選択" %>
               <div>
-                <!--郵便番号プラス住所の記述に変更する必要あり。方法は調べる。-->
-                <%= f.collection_select :address, @registered_addresses, :id, :full_address %>
+                <%= f.collection_select :address_id, @registered_addresses, :id, :full_address %>
               </div>
             </div>
           <% end %>

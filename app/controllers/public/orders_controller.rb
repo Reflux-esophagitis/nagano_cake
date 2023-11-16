@@ -17,7 +17,7 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.full_name
     when 1
-      registered_address = customer.addresses.find(params[:address_id])
+      registered_address = current_customer.addresses.find(params[:order][:address_id])
       @order.zip_code = registered_address.zip_code
       @order.address = registered_address.address
       @order.name = registered_address.name
