@@ -1,0 +1,13 @@
+<td>
+  <%= address.zip_code %>
+</td>
+<td>
+  <%= address.address%>
+</td>
+<td>
+  <%= address.name %>
+</td>
+<td>
+  <%= link_to "編集する", url: edit_address_path(address), class: "btn btn-success" %>
+  <%= link_to "削除する", url: address_path(address), method: :delete, class: "btn btn-danger" %>
+</td>
