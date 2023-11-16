@@ -1,0 +1,24 @@
+<tr>
+  <td class="align-middle">
+    <%= format_date(order.created_at) %>
+  </td>
+  <td class="align-middle">
+    〒<%= order.zip_code%><br>
+    <%= order.address %><br>
+    <%= order.name %>
+  </td>
+  <td class="align-middle">
+    <%= order_items_name(order) %>
+  </td>
+  <td class="align-middle">
+    <%= to_jpy_format(order.total_price, true) %>
+  </td>
+  <td class="align-middle">
+    <%= order_status_text(order) %>
+  </td>
+  <td class="align-middle">
+    <%= link_to order_path(order), class: "btn btn-sm btn-primary" do %>
+    表示する
+    <% end %>
+  </td>
+</tr>
