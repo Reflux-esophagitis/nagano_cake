@@ -6,33 +6,33 @@
 </div>
 <div class="field">
   <label>氏名</label>
-
+  <%= @customer.full_name %>
 </div>
 <div class="field">
   <label>カナ</label>
-
+  <%= @customer.last_name_kana + @customer.first_name_kana %>
 </div>
 <div class="field">
   <label>郵便番号</label>
-
+  <%= @customer.zip_code %>
 </div>
 <div class="field">
   <label>住所</label>
-
+  <%= @customer.address %>
 </div>
 <div class="field">
   <label>電話番号</label>
-
+  <%= @customer.telephone_number %>
 </div>
 <div class="field">
   <label>メールアドレス</label>
-
+  <%= @customer.email %>
 </div>
 <div class="field">
   <label>配送先</label>
-
+  <%= link_to addresses_path do %>一覧を見る<% end %>
 </div>
 <div class="field">
   <label>注文履歴</label>
-
+  <%= link_to orders_path do %>一覧を見る<% end %>
 </div>
