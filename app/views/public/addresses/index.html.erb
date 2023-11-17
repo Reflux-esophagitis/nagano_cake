@@ -1,2 +1,21 @@
-<h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4 class="offset-1 p-4">配送先/一覧</h4>
+  </div>
+  <div>
+    <%= render "address_form", address: @address %>
+  </div>
+  <table class="mt-5 col-8 table table-bordered">
+    <thead>
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "addresses_table", collection: @addresses, as: "address" %>
+    </tbody>
+  </table>
+</div>
