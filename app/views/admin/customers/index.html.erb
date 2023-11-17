@@ -1,2 +1,23 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>会員一覧</h2>
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "customers_table", collection: @customers, as: :customer %>
+        </tbody>
+      </table>
+      <div class="d-flex justify-content-center">
+        <%= paginate @customers %>
+      </div>
+    </div>
+  </div>
+</div>

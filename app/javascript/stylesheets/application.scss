@@ -1,1 +1,4 @@
-@use '~bootstrap/scss/bootstrap';
+@use "~bootstrap/scss/bootstrap";
+
+@use "./kaminari/index";
+@use "./admin/customers";
