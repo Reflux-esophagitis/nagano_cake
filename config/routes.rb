@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     resource :customers, only: %i[edit update] do
       member do
-        get :mypage, to: 'public/customers#show'
+        get :mypage, to: 'customers#show'
         get :confirm
         patch :leave
       end
