@@ -47,7 +47,7 @@ module ApplicationHelper
   def customer_nav_items
     [
       {
-        path: customer_path(current_customer),
+        path: customers_mypage_path,
         text: "マイページ"
       },
       {

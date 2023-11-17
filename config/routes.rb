@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only: %i[index show]
 
-    resources :customers, only: %i[show edit update] do
+    resources :customers, only: %i[edit update] do
       member do
         get :confirm
         patch :leave
