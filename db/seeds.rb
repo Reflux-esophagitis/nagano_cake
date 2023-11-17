@@ -6,11 +6,35 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ADMIN_TEST_EMAIL = "admin@admin"
-ADMIN_TEST_PASSWORD = "adminadmin"
+# 管理者のSeed作成
+require_relative "seeds/admin"
 
-Admin.create!(
-  email: ADMIN_TEST_EMAIL,
-  password: ADMIN_TEST_PASSWORD,
+DEV_ADMIN_EMAIL = "admin@admin"
+DEV_ADMIN_PASSWORD = "adminadmin"
+
+Seeds::Admins.create(
+  DEV_ADMIN_EMAIL,
+  DEV_ADMIN_PASSWORD,
 )
-puts "[Seeds] Created Admin user"
+
+# 顧客のSeed作成
+require_relative "seeds/customers"
+
+DEV_CUSTOMER_EMAIL = "dev@example.com"
+DEV_CUSTOMER_PASSWORD = "password"
+
+FAKE_CUSTOMERS_COUNT = 20
+
+Seeds::Customers.create_dev_customer(
+  DEV_CUSTOMER_EMAIL,
+  DEV_CUSTOMER_PASSWORD
+)
+Seeds::Customers.create_fake_customers(FAKE_CUSTOMERS_COUNT)
+
+# ジャンルのSeed作成
+require_relative "seeds/genres"
+Seeds::Genres.create
+
+# 商品のSeed作成
+require_relative "seeds/items"
+Seeds::Items.create
