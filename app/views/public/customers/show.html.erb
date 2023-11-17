@@ -1,38 +1,42 @@
 <h1>Public::Customers#show</h1>
 <h2>マイページ</h2>
-<div class="field">
-  <label>登録情報</label>
-  <%= link_to  edit_customers_path do %>編集する<% end %>
-</div>
-<div class="field">
-  <label>氏名</label>
-  <%= @customer.full_name %>
-</div>
-<div class="field">
-  <label>カナ</label>
-  <%= @customer.last_name_kana + @customer.first_name_kana %>
-</div>
-<div class="field">
-  <label>郵便番号</label>
-  <%= @customer.zip_code %>
-</div>
-<div class="field">
-  <label>住所</label>
-  <%= @customer.address %>
-</div>
-<div class="field">
-  <label>電話番号</label>
-  <%= @customer.telephone_number %>
-</div>
-<div class="field">
-  <label>メールアドレス</label>
-  <%= @customer.email %>
-</div>
-<div class="field">
-  <label>配送先</label>
-  <%= link_to addresses_path do %>一覧を見る<% end %>
-</div>
-<div class="field">
-  <label>注文履歴</label>
-  <%= link_to orders_path do %>一覧を見る<% end %>
-</div>
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th scope="row">登録情報</th>
+      <td><%= link_to  edit_customers_path do %>編集する<% end %></td>
+    </tr>
+    <tr>
+      <th scope="row">氏名</th>
+      <td><%= "#{@customer.last_name} #{@customer.first_name}" %></td>
+    </tr>
+    <tr>
+      <th scope="row">カナ</th>
+      <td><%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %></td>
+    </tr>
+    <tr>
+      <th scope="row">郵便番号</th>
+      <td><%= @customer.zip_code %></td>
+    </tr>
+    <tr>
+      <th scope="row">住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th scope="row">電話番号</th>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th scope="row">メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <th scope="row">配送先</th>
+      <td><%= link_to addresses_path do %>一覧を見る<% end %></td>
+    </tr>
+    <tr>
+      <th scope="row">注文履歴</th>
+      <td><%= link_to orders_path do %>一覧を見る<% end %></td>
+    </tr>
+  </tbody>
+</table>

@@ -10,13 +10,12 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get "about" => "public/homes#about"
-  get  '/customers/mypage', to: 'public/customers#show'
 
   scope module: :public do
     resources :items, only: %i[index show]
 
     resource :customers, only: %i[edit update] do
-      member do
+      collection do
         get :mypage, to: 'customers#show'
         get :confirm
         patch :leave
