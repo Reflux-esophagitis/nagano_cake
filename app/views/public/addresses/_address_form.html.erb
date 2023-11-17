@@ -1,0 +1,15 @@
+<%= form_with model: address do |f| %>
+  <div class="form-group row">
+    <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: "col-md-3"%>
+    <%= f.text_field :zip_code, autofocus: true, class: "col-md-2" %>
+  </div>
+  <div class="form-group row">
+    <%= f.label :address, "住所", class: "col-md-3" %>
+    <%= f.text_field :address, class: "col-md-5" %>
+  </div>
+  <div class="form-group row">
+    <%= f.label :name, "宛名", class: "col-md-3" %>
+    <%= f.text_field :name, class: "col-md-2" %>
+    <%= f.submit address_btn, class: "offset-3 btn btn-success" %>
+  </div>
+<% end %>
