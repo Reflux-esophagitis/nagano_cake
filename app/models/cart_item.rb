@@ -2,7 +2,7 @@ class CartItem < ApplicationRecord
   belongs_to :customer
   belongs_to :item
 
-  validates :amount, presence: true
+  validates :amount, numericality: { only_integer: true, greater_than: 0 }
 
   def subtotal
     price = item.non_taxed_price
