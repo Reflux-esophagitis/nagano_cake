@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only: %i[index show]
 
-    resource :customers, only: %i[] do
+    resource :customers do
       collection do
         get :mypage, to: 'customers#show'
         get "mypage/edit", to: "customers#edit"
