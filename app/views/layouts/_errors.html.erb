@@ -3,7 +3,7 @@
     <div class="alert alert-danger d-flex justify-content-center align-items-center">
       <div>
         <div class="font-weight-bold d-flex align-items-center h5">
-          <%= model.errors.size %>件のエラーが発生しました
+          <i class="fa-solid fa-xmark mr-2"></i><%= model.errors.size %>件のエラーが発生しました
         </div>
         <ul>
           <% model.errors.full_messages.each do |message| %>
