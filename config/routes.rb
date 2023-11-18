@@ -14,9 +14,11 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only: %i[index show]
 
-    resource :customers, only: %i[edit update] do
+    resource :customers, only: %i[] do
       collection do
         get :mypage, to: 'customers#show'
+        get "mypage/edit", to: "customers#edit"
+        patch "mypage/update", to: "customers#update"
         get :confirm
         patch :leave
       end
