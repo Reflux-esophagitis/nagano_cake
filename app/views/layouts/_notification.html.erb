@@ -1,0 +1,16 @@
+<% flash.each do |message_type, message| %>
+  <% case message_type %>
+  <% when "notice" %>
+    <div class="alert alert-success d-flex justify-content-center align-items-center">
+      <div class="font-weight-bold">
+        <%= message %>
+      </div>
+    </div>
+  <% when "alert" %>
+    <div class="alert alert-warning d-flex justify-content-center align-items-center">
+      <div class="font-weight-bold">
+        <%= message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

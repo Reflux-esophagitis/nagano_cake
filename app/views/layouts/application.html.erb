@@ -13,6 +13,8 @@
   <body>
     <%= render "layouts/header" %>
     <main>
+      <%= yield :error %>
+      <%= render "layouts/notification" %>
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>

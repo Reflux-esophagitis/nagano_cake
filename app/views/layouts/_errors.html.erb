@@ -1,0 +1,16 @@
+<% content_for :error do %>
+  <% if model && model.errors.any? %>
+    <div class="alert alert-danger d-flex justify-content-center align-items-center">
+      <div>
+        <div class="font-weight-bold d-flex align-items-center h5">
+          <%= model.errors.size %>件のエラーが発生しました
+        </div>
+        <ul>
+          <% model.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>

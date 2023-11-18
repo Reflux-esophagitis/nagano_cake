@@ -1,7 +1,7 @@
 <h2>新規会員登録</h2>
 
 <%= form_with model: resource, url: registration_path(resource_name), local: true do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+  <%= render "layouts/errors", model: resource %>
 
   <div class="field">
     <%= f.label :name, "名前" %>
