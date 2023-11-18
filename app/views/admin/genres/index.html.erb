@@ -3,17 +3,7 @@
     <div class="col-md-6">
       <h4>ジャンル一覧・追加</h4>
       <div class="my-4">
-        <%= form_with model: [:admin, Genre.new], local: true do |f| %>
-          <div class="form-row align-items-center">
-            <%= f.label "ジャンル名", class: "col-3 m-0" %>
-            <%= f.text_field :name, placeholder: "ジャンル名", class: "col-5 form-control" %>
-            <div class="col-4 d-flex justify-content-end">
-              <%= f.button type: :submit, class: "btn btn-success" do %>
-                新規登録
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        <%= render "admin/genres/form", genre: Genre.new, btn_text: "新規作成" %>
       </div>
     </div>
   </div>

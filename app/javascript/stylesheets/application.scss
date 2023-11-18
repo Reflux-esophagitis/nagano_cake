@@ -1,4 +1,6 @@
 @use "~bootstrap/scss/bootstrap";
 
+@use "./root";
+
 @use "./kaminari/index";
 @use "./admin/customers";
