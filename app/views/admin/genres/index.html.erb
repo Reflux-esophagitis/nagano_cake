@@ -17,16 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @genres.each do |genre| %>
-            <tr>
-              <td class="align-middle"><%= genre.name %></td>
-              <td class="align-middle text-center">
-                <%= link_to edit_admin_genre_path(genre), class: "btn btn-success" do %>
-                  編集する
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+          <%= render partial: "admin/genres/table_row", collection: @genres, as: :genre %>
         </tbody>
       </table>
     </div>
