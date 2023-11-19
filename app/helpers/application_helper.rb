@@ -38,6 +38,14 @@ module ApplicationHelper
     )
   end
 
+  # @params date [Datetime] フォーマットする日時 ex.@item.created_at => 2023-01-02 03:04:05 +0900
+  # @return [String] フォーマットされた日付 ex. 2023/1/2
+  # 使用例: format_date(@item.created_at)
+
+  def format_date(date)
+    date.strftime('%Y/%m/%d') if date.present?
+  end
+
   private
   def admin_nav_items
     [
