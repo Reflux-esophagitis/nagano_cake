@@ -4,16 +4,18 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <p>注文情報</p>
+      <p><strong>注文情報</strong></p>
       <%= render "order_info_table", order: @order %>
     </div>
     <div class="col-md-3">
-      <p>請求情報</p>
+      <p><strong>請求情報</strong></p>
       <%= render "order_price_table", order: @order %>
     </div>
   </div>
   <div class="row">
-    <h5>注文内容</h5>
-    <%= render "order_item_table", order_items: @order_items %>
+    <div class="col-md-9">
+      <p><strong>注文内容</strong></p>
+      <%= render "order_item_table", order_items: @order_items %>
+    </div>
   </div>
 </div>

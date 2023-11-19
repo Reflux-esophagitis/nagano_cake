@@ -20,12 +20,4 @@ def order_items_name(order)
   order.order_details.map { |detail| detail.item.name }.join("\n")
 end
 
-def show_price(item)
-  if current_page?(confirm_orders_path)
-    item.subtotal.round(0)
-  else
-    item.price
-  end
-end
-
 end
