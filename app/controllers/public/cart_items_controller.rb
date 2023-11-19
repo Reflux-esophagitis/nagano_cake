@@ -12,7 +12,7 @@ class Public::CartItemsController < ApplicationController
     if CartItem.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
       # 数量を加算
-      cart_item.amount += params[:crat_item][:amount].to_i
+      cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.update(amount: cart_item.amount)
       redirect_to cart_items_path
     else
