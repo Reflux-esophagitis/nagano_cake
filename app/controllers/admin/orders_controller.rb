@@ -24,10 +24,12 @@ class Admin::OrdersController < ApplicationController
       if order.complete_all_details?
         order.update(status: params[:order][:status])
       else
+        # メッセージは未実装
         flash[:notice] = "すべての商品を制作完了にしてください。"
       end
     else
       order.update(status: params[:order][:status])
+      flash[:notice] = "注文ステータスを更新しました。"
     end
     redirect_to admin_order_path(order)
   end
