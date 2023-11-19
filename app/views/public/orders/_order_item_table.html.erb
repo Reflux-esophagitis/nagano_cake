@@ -14,9 +14,9 @@
         <%= image_tag order_item.item.image, size: "48x48" %>
         <%= order_item.item.name %>
       </td>
-      <td><%= order_item.item.taxed_price.round(0).to_s(:delimited) %></td>
+      <td><%= to_jpy_format(order_item.item.taxed_price, false) %></td>
       <td><%= amount = order_item.amount %></td>
-      <td><%= (order_item.item.taxed_price * amount).round(0).to_s(:delimited) %></td>
+      <td><%= to_jpy_format(order_item.item.taxed_price * amount, false) %></td>
     </tr>
     <% end %>
   </tbody>
