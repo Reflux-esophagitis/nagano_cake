@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% order_items.each do |order_item| %>
+    <tr>
+      <td>
+        <%= image_tag order_item.item.image, size: "48x48" %>
+        <%= order_item.item.name %>
+      </td>
+      <td><%= order_item.item.taxed_price.round(0) %></td>
+      <td><%= order_item.amount %></td>
+      <td><%= order_item.subtotal.round(0) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
