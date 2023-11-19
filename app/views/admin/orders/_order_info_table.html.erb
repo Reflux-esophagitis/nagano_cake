@@ -15,12 +15,12 @@
         <td><%= to_jpy_format(order_detail.item.taxed_price, false) %></td>
         <td><%= order_detail.amount %></td>
         <td><%= to_jpy_format(order_detail.price, false) %></td>
-        <%= form_with model: order_detail, url:  admin_order_detail_path(order_detail), method: :patch do |f| %>
         <td>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
           <%= f.select :status, detail_statuses.map { |key, value| [key, value] } %>
           <%= f.submit "更新", class: "btn btn-sm btn-success" %>
-        </td>
         <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

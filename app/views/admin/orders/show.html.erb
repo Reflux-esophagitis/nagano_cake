@@ -37,7 +37,6 @@
     <%= render "order_info_table", order_details: @order_details, detail_statuses: @detail_statuses %>
     <div class="col">
       <div>
-        <strong>商品合計</strong>
         <%= to_jpy_format(@order.total_price, false) %>円
       </div>
       <div>
