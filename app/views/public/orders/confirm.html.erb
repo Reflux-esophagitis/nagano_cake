@@ -25,9 +25,7 @@
       <%= f.hidden_field :address, value: @order.address %>
       <%= f.hidden_field :payment_method, value: @order.payment_method %>
       <%= f.hidden_field :postage, value: @order.postage %>
-      <!--テスト用に定数に変更　-->
       <%= f.hidden_field :total_price, value: @order.total_price %>
-      <!--%= f.hidden_field :total_price, value: @order.total_price %>-->
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
     <% end %>
   </div>
