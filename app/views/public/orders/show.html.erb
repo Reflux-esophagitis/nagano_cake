@@ -1,2 +1,19 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h4>注文履歴詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <p>注文情報</p>
+      <%= render "order_info_table", order: @order %>
+    </div>
+    <div class="col-md-3">
+      <p>請求情報</p>
+      <%= render "order_price_table", order: @order %>
+    </div>
+  </div>
+  <div class="row">
+    <h5>注文内容</h5>
+    <%= render "order_item_table", order_items: @order_items %>
+  </div>
+</div>

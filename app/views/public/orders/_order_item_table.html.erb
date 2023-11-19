@@ -16,7 +16,7 @@
       </td>
       <td><%= order_item.item.taxed_price.round(0) %></td>
       <td><%= order_item.amount %></td>
-      <td><%= order_item.subtotal.round(0) %></td>
+      <td><%= show_price(order_item) %></td>
     </tr>
     <% end %>
   </tbody>
