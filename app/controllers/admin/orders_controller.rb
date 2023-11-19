@@ -20,7 +20,8 @@ class Admin::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-    if params[:order][:status].to_i == 4
+    new_status = params[:order][:status].to_i
+    if new_status == 4
       if order.complete_all_details?
         order.update(status: params[:order][:status])
       else

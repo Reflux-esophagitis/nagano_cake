@@ -28,7 +28,7 @@
     <p class="col-2"><strong>注文ステータス</strong></p>
     <p>
       <%= form_with model: @order, url: admin_order_path do |f| %>
-        <%= f.select :status, @statuses.map { |key, value| [key, value] }, selected: default_selected(@order) %>
+        <%= f.select :status, @statuses.to_a, selected: default_selected(@order) %>
         <%= f.submit "更新", class: "btn btn-sm btn-success ml-3" %>
       <% end %>
     </p>
@@ -37,6 +37,7 @@
     <%= render "order_info_table", order_details: @order_details, detail_statuses: @detail_statuses %>
     <div class="col">
       <div>
+        <strong>商品合計</strong>
         <%= to_jpy_format(@order.total_price, false) %>円
       </div>
       <div>
