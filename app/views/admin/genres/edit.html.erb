@@ -1,2 +1,10 @@
-<h1>Admin::Genres#edit</h1>
-<p>Find me in app/views/admin/genres/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>ジャンル編集</h4>
+      <div class="my-4">
+        <%= render "admin/genres/form", genre: @genre, btn_text: "変更を保存" %>
+      </div>
+    </div>
+  </div>
+</div>
