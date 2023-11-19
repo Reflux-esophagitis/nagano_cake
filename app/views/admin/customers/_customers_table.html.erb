@@ -11,8 +11,6 @@
     <%= customer.email %>
   </td>
   <td>
-    <span class="customer-status <%= customer.is_active ? "active" : "inactive" %> d-inline-block font-weight-bold">
-      <%= customer.is_active ? "有効" : "退会" %>
-    </span>
+    <%= render "admin/customers/status", is_active: customer.is_active %>
   </td>
 </tr>

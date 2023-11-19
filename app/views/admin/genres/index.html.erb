@@ -1,2 +1,25 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>ジャンル一覧・追加</h4>
+      <div class="my-4">
+        <%= render "admin/genres/form", genre: Genre.new, btn_text: "新規作成" %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>ジャンル</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "admin/genres/table_row", collection: @genres, as: :genre %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

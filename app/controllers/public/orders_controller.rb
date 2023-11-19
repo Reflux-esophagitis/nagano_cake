@@ -7,8 +7,8 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new
-    order_items = current_customer.cart_items
-    @order.total_price = CartItem.total_price(order_items)
+    @order_items = current_customer.cart_items
+    @order.total_price = CartItem.total_price(@order_items)
     @order.customer_id = current_customer.id
     @order.postage = POSTAGE
     case params[:order][:address_method].to_i
@@ -26,7 +26,10 @@ class Public::OrdersController < ApplicationController
         # flash[:error] = "配送先が入力されていません"
         redirect_to new_order_path
       else
-        current_customer.address.create({
+        @order.zip_code = params[:order][:zip_code]
+        @order.address = params[:order][:address]
+        @order.name = params[:order][:name]
+        current_customer.addresses.create({
           zip_code: params[:order][:zip_code],
           address: params[:order][:address],
           name: params[:order][:name]
@@ -46,6 +49,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders
   end
 
   def show
