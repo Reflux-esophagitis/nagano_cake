@@ -1,33 +1,6 @@
 @use "~bootstrap/scss/bootstrap";
 
 @use "./global";
-
+@use "./form";
 @use "./kaminari/index";
 @use "./admin/customers";
-
-body {
-  background-image: url(../images/so-white.png);
-  background-size: 512px 512px;
-  background-repeat: repeat;
-  display: grid;
-  grid-template: "header" 96px "main" 1fr "footer" 72px / 100%;
-  min-height: 100vh;
-}
-
-header {
-  grid-area: header;
-  background: #faf7f5;
-
-  nav {
-    height: 100%;
-  }
-}
-
-main {
-  grid-area: main;
-}
-
-footer {
-  grid-area: footer;
-  background-color: #fcfbfa;
-}
