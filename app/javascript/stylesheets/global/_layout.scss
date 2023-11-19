@@ -1,6 +1,4 @@
-$body-wallpaper: "../images/so-white.png";
-$header-color: #faf7f5;
-$footer-color: #fcfbfa;
+@use "./variables" as *;
 
 body {
   background-image: url($body-wallpaper);
@@ -13,11 +11,7 @@ body {
 
 header {
   grid-area: header;
-  background: $header-color;
-
-  nav {
-    height: 100%;
-  }
+  background-color: $header-color;
 }
 
 main {

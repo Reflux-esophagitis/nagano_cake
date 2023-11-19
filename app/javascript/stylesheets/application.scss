@@ -1,6 +1,7 @@
 @use "~bootstrap/scss/bootstrap";
 
-@use "./global";
-@use "./form";
+@use "./global/layout";
+@use "./global/header";
 @use "./kaminari/index";
 @use "./admin/customers";
+@use "./public/registration-form";

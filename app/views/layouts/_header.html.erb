@@ -1,19 +1,37 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-between">
-    <div class="logo">
+  <nav id="navigation" class="navbar navbar-expand-lg navbar-light d-flex justify-content-between align-items-center flex-row flex-nowrap">
+    <div id="logo" class="logo">
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "logo.svg", height: 24 %>
+        <%= image_tag "logo.svg" %>
       <% end %>
     </div>
-    <div>
-      <% if customer_signed_in? %>
-        ようこそ、<%= current_customer.last_name %>さん！
-      <% end %>
-    </div>
-    <div>
-      <ul class="navbar-nav">
-        <%= render partial: "layouts/nav-item", collection: nav_items, as: :item %>
-      </ul>
+    <div class="w-100 h-100 d-flex justify-content-around flex-column">
+      <div class="h-50 d-flex justify-content-between">
+        <div id="welcome-message" class="mx-auto mt-auto">
+          <% if customer_signed_in? %>
+            ようこそ、<%= current_customer.last_name %>さん！
+          <% end %>
+        </div>
+        <div id="nav-menu" class="text-right h-100">
+          <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <%= render partial: "layouts/nav-item", collection: nav_items, as: :item %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div id="search-form" class="ml-auto">
+        <!-- 検索フォーム仮設置 -->
+        <form class="d-flex justify-content-center align-items-center">
+          <input type="search" placeholder="Search" class="form-control form-control-sm" />
+          <div class="mx-2"><i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i></div>
+        </form>
+      </div>
     </div>
   </nav>
 </header>
