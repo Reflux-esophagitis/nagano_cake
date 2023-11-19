@@ -1,2 +1,43 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4><%= @customer.full_name %>さんの会員詳細</h4>
+      <div class="container">
+        <%= render "admin/customers/detail_row", label: "会員ID" do %>
+          <%= @customer.id %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "氏名" do %>
+          <%= "#{@customer.last_name} #{@customer.first_name}" %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "フリガナ" do %>
+          <%= "#{@customer.last_name_kana} #{@customer.first_name_kana}" %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "郵便番号" do %>
+          <%= @customer.zip_code %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "住所" do %>
+          <%= @customer.address %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "電話番号" do %>
+          <%= @customer.telephone_number %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "メールアドレス" do %>
+          <%= @customer.email %>
+        <% end %>
+        <%= render "admin/customers/detail_row", label: "会員ステータス" do %>
+          <%= render "admin/customers/status", is_active: @customer.is_active %>
+        <% end %>
+      </div>
+      <div class="col d-flex justify-content-center">
+        <div class="w-75 d-flex justify-content-around">
+          <%= link_to edit_admin_customer_path(@customer), class: "btn btn-success" do %>
+            編集する
+          <% end %>
+          <%= link_to admin_root_path, class: "btn btn-primary" do %>
+            注文履歴一覧を見る
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
