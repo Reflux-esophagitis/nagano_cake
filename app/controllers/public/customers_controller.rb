@@ -8,7 +8,6 @@ class Public::CustomersController < ApplicationController
   end
 
   def confirm
-    @customer = current_customer
   end
 
   def update
@@ -24,7 +23,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_active: false)
     reset_session
-    redirect_to root_path, notice: '退会処理を実行しました。'
+    redirect_to root_path, notice: '退会処理が完了しました。'
   end
 
   private
