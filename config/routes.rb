@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
     resource :customers do
       collection do
-        get :mypage, to: 'customers#show'
+        get :mypage, to: "customers#show"
         get "mypage/edit", to: "customers#edit"
         patch "mypage/update", to: "customers#update"
         get :confirm
@@ -47,7 +47,11 @@ Rails.application.routes.draw do
 
     resources :genres, only: %i[index create edit update]
 
-    resources :customers, only: %i[index show edit update]
+    resources :customers, only: %i[index show edit update] do
+      member do
+        get :orders
+      end
+    end
 
     resources :orders, only: %i[show update]
 
