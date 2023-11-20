@@ -5,8 +5,8 @@ class Order < ApplicationRecord
   validates :name, presence: true
   validates :zip_code, presence: true
   validates :address, presence: true
-  validates :payment_method, presence: true, inclusion: { in: [0, 1], message: "は0, 1のいずれかでなければなりません" }
-  validates :status, presence: true, inclusion: { in: [0, 1, 2, 3, 4], message: "は0, 1, 2, 3, 4のいずれかでなければなりません" }
+  validates :payment_method, presence: true, inclusion: { in: [0, 1] }
+  validates :status, presence: true, inclusion: { in: [0, 1, 2, 3, 4] }
   validates :total_price, presence: true
   validates :postage, presence: true
 
