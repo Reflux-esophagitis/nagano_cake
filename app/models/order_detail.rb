@@ -4,5 +4,5 @@ class OrderDetail < ApplicationRecord
 
   validates :price, presence: true
   validates :amount, presence: true
-  validates :status, presence: true, inclusion: { in: [0, 1, 2, 3] }
+  validates :status, presence: true, inclusion: { in: [*0..3] }
 end
