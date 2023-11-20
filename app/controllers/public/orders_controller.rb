@@ -10,6 +10,7 @@ class Public::OrdersController < ApplicationController
     @order_items = current_customer.cart_items
     @order.total_price = CartItem.total_price(@order_items)
     @order.customer_id = current_customer.id
+    @order.payment_method = params[:order][:payment_method].to_i
     @order.postage = POSTAGE
     case params[:order][:address_method].to_i
     when 0

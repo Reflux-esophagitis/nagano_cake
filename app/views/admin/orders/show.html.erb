@@ -22,13 +22,13 @@
   </div>
   <div class="row">
     <p class="col-2"><strong>支払方法</strong></p>
-    <p><%= payment_method_text(@order) %></p>
+    <p><%= @order.payment_method_i18n %></p>
   </div>
   <div class="row">
     <p class="col-2"><strong>注文ステータス</strong></p>
     <p>
       <%= form_with model: @order, url: admin_order_path do |f| %>
-        <%= f.select :status, @statuses.to_a, selected: default_selected(@order) %>
+        <%= f.select :status, @statuses, selected: @order.status_before_type_cast %>
         <%= f.submit "更新", class: "btn btn-sm btn-success ml-3" %>
       <% end %>
     </p>

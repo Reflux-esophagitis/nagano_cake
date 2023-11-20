@@ -13,10 +13,10 @@
   </tr>
   <tr>
     <th class="align-middle">支払方法</th>
-    <td class="align-middle"><%= payment_method_text(order) %></td>
+    <td class="align-middle"><%= order.payment_method_i18n %></td>
   </tr>
   <tr>
     <th class="align-middle">ステータス</th>
-    <td class="align-middle"><%= order_status_text(order) %></td>
+    <td class="align-middle"><%= order.status_i18n %></td>
   </tr>
 </table>
