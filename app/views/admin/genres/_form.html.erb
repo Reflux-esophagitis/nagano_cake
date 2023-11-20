@@ -1,3 +1,4 @@
+<%= render "layouts/errors", model: genre %>
 <%= form_with model: [:admin, genre], local: true do |f| %>
   <div class="form-row align-items-center">
     <%= f.label "ジャンル名", class: "col-3 m-0 font-weight-bold" %>
