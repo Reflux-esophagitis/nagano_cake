@@ -33,7 +33,9 @@
             </td>
             <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
             <td><%= order.order_details.sum(:amount) %></td>
-            <td><%= order.status_i18n %></td>
+            <!--enum未対応のため仮編集-->
+            <td><%= order_status_text(order) %></td>
+            <!--<td>%= order.status_i18n %></td>-->
           </tr>
           <% end %>
         </tbody>

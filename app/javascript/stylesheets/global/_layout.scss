@@ -1,0 +1,29 @@
+@use "./variables" as *;
+
+body {
+  background-image: url($body-wallpaper);
+  background-size: 512px 512px;
+  background-repeat: repeat;
+  display: grid;
+  grid-template: "header" 96px "main" 1fr "footer" 72px / 100%;
+  min-height: 100vh;
+}
+
+header {
+  grid-area: header;
+  background-color: $header-color;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  grid-area: footer;
+  background-color: $footer-color;
+}
+
+// Rails のバリデーションエラーによるレイアウト崩れ防止
+.field_with_errors {
+  display: contents;
+}
