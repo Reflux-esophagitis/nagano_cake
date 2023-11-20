@@ -1,0 +1,38 @@
+// Bootstrap の Sass mixin を使えるようにするための記述
+@use "~bootstrap/scss/bootstrap" as *;
+
+#customer-registration-form {
+  .field {
+    display: grid;
+    gap: 0 1rem;
+    grid-template-areas:
+        "main-label main-label"
+        "first-sub-label second-sub-label"
+        "first-input second-input";
+    grid-template-columns: repeat(2, 1fr);
+
+    // 各フィールドの定義
+    &-main-label        { grid-area: main-label; }
+    &-first-sub-label   { grid-area: first-sub-label; }
+    &-first-input       { grid-area: first-input; }
+    &-second-sub-label  { grid-area: second-sub-label; }
+    &-second-input      { grid-area: second-input; }
+    &-full-width-input  { grid-area: first-input / first-input / second-input / second-input; }
+
+    // Large devices (desktops, 992px and up)
+    @include media-breakpoint-up(lg) {
+      $main-label-width: 12rem;
+      $sub-label-width: 3rem;
+      $input-width: 16rem;
+
+      grid-template-areas: "main-label first-sub-label first-input second-sub-label second-input .";
+      grid-template-columns: $main-label-width $sub-label-width $input-width $sub-label-width $input-width 1fr;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+}
