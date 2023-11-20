@@ -1,0 +1,8 @@
+<%= @customer.full_name %>
+<% @orders.each do |order| %>
+  <%= order.name %>
+  <%= order.full_address %>
+  <%= order.payment_method %>
+  <%= order.status %>
+  <%= order.total_price %>
+<% end %>

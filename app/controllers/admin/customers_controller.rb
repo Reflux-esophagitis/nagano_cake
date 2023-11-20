@@ -1,6 +1,6 @@
 class Admin::CustomersController < ApplicationController
   before_action :authenticate_admin!
-  before_action :set_customer, only: %i[show edit update]
+  before_action :set_customer, only: %i[show edit update orders]
 
   def index
     @customers = Customer.page(params[:page])
@@ -10,6 +10,10 @@ class Admin::CustomersController < ApplicationController
   end
 
   def edit
+  end
+
+  def orders
+    @orders = @customer.orders
   end
 
   def update
