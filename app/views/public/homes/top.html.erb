@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <aside class="col-2">
+    <aside class="col-lg-2">
       <div>ジャンル検索</div>
       <ul>
         <% @genres.each do |genre| %>
@@ -8,13 +8,12 @@
         <% end %>
       </ul>
     </aside>
-    <div class="col-10">
+    <div class="col-lg-10">
       <div id="main-visual">
         <div id="mv-picture">
-          <%= image_tag "showcase.jpg" %>
         </div>
         <div id="mv-logo">
-          <%= image_tag "logo.svg" %>
+          <%= image_tag "logo.svg", draggable: false %>
         </div>
         <div id="mv-text-box">
           <p id="mv-text">

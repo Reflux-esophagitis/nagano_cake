@@ -11,7 +11,11 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
+import "vegas"
+import "vegas/dist/vegas.min.css"
+
 import "../stylesheets/application"
+import "./main-visual"
 
 Rails.start()
 Turbolinks.start()
