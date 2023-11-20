@@ -2,20 +2,12 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_details = @order.order_details
-    @statuses = {
-       "入金待ち" => 0,
-       "入金確認" => 1,
-       "制作中" => 2,
-       "発送準備中" => 3,
-       "発送済み" => 4
-    }
-
-    @detail_statuses = {
-       "製作不可" => 0,
-       "制作待ち" => 1,
-       "制作中" => 2,
-       "制作完了" => 3
-    }
+    @statuses = Order.statuses.map do |key, value|
+      [I18n.t("enums.order.status.#{key}"), value]
+    end
+    @detail_statuses = OrderDetail.statuses.map do |key, value|
+      [I18n.t("enums.order_detail.status.#{key}"), value]
+    end
   end
 
   def update
