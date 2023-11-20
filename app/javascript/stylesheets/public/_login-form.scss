@@ -1,0 +1,27 @@
+// Bootstrap の Sass mixin を使えるようにするための記述
+@use "~bootstrap/scss/bootstrap" as *;
+
+@use "../global/variables" as *;
+
+#customer-login-form {
+  .field {
+    display: grid;
+    gap: 0 1rem;
+    grid-template-areas: "main-label input";
+    grid-template-columns: $main-label-width 1fr;
+
+    // 各フィールドの定義
+    &-main-label  { grid-area: main-label; }
+    &-input       { grid-area: input; }
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: $main-label-width $input-width;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+  }
+}
