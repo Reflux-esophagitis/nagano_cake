@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= link_to admin_order_path(order) do %>
+      <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+    <% end %>
+  </td>
+  <% if show_customer %>
+    <td><%= order.customer.full_name %></td>
+  <% end %>
+  <td><%= order.order_details.sum(:amount) %></td>
+  <td><%= order.status_i18n %></td>
+</tr>

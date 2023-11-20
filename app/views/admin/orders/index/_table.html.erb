@@ -1,0 +1,15 @@
+<table class="table mt-3">
+  <thead class="thead-light">
+    <tr>
+      <th>購入日時</th>
+      <% if show_customer %>
+        <th>購入者</th>
+      <% end %>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "admin/orders/index/table_row", collection: @orders, as: :order, locals: { show_customer: show_customer } %>
+  </tbody>
+</table>
