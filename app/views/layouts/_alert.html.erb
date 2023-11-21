@@ -1,0 +1,10 @@
+<%
+  alert_type = {
+    :notice => "alert-success",
+    :alert => "alert-warning",
+    :error => "alert-danger"
+  }
+%>
+<div class="alert <%= alert_type[type] %> d-flex justify-content-center align-items-center m-0 rounded-0 border-right-0 border-left-0">
+  <%= yield %>
+</div>
