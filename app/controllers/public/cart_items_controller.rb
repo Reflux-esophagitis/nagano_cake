@@ -50,8 +50,10 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+    @cart_items = current_customer.cart_items
     current_customer.cart_items.destroy_all
-    redirect_to cart_items_path, notice: "カートを空にしました。"
+    # redirect_to cart_items_path, notice: "カートを空にしました。"
+    render :cart_table
   end
 
   private
