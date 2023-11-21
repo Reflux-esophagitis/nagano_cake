@@ -1,0 +1,14 @@
+<div id="genres-search" class="sidebar-content genres">
+  <div class="genres-heading">ジャンル検索</div>
+  <ul class="genres-list">
+    <% @genres.each do |genre| %>
+      <li class="genres-list-item">
+        <!-- ジャンル検索実装後、パスを `nil` から適切なものに変更する -->
+        <%= link_to nil, class: "genres-anchor" do %>
+          <span class="genres-genre-name"><%= genre.name %></span>
+          <i class="genres-icon-chevron fa-solid fa-chevron-right"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
