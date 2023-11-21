@@ -18,7 +18,6 @@ class Admin::OrdersController < ApplicationController
         order.update(status: new_status)
         flash[:notice] = "注文ステータスを更新しました。"
       else
-        # メッセージは未実装
         flash[:alert] = "すべての商品を制作完了にしてください。"
       end
     else
