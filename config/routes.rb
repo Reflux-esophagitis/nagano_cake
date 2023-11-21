@@ -56,5 +56,8 @@ Rails.application.routes.draw do
     resources :orders, only: %i[show update]
 
     resources :order_details, only: :update
+
+    get 'searches/search', as: "search"
+
   end
 end
