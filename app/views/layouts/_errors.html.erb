@@ -1,6 +1,6 @@
 <% content_for :error do %>
   <% if model && model.errors.any? %>
-    <div class="alert alert-danger d-flex justify-content-center align-items-center">
+    <%= render "layouts/alert", type: :error do %>
       <div>
         <div class="font-weight-bold d-flex align-items-center h5">
           <i class="fa-solid fa-xmark mr-2"></i><%= model.errors.size %>件のエラーが発生しました
@@ -11,6 +11,6 @@
           <% end %>
         </ul>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>
