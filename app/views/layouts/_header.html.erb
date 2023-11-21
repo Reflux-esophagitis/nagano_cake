@@ -27,10 +27,12 @@
       </div>
       <div id="search-form" class="ml-auto">
         <!-- 検索フォーム仮設置 -->
-        <form class="d-flex justify-content-center align-items-center">
-          <input type="search" placeholder="Search" class="form-control form-control-sm" />
-          <div class="mx-2"><i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i></div>
-        </form>
+        <%= form_with url: search_form_action, method: :get, class: "d-flex justify-content-center align-items-center" do |f| %>
+          <%= f.text_field :word, class: "form-control form-control-sm" %>
+          <%= button_tag type: "submit", class: "ml-2 btn btn-sm" do %>
+           <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </nav>
