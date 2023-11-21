@@ -15,7 +15,9 @@
     <%= render "layouts/header" %>
     <main>
       <%= yield :error %>
-      <%= render "layouts/notification" %>
+      <div id="flash">
+        <%= render "layouts/notification" %>
+      </div>
       <%= yield %>
     </main>
     <%= render "layouts/footer" %>
