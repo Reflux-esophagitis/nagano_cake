@@ -1,15 +1,8 @@
-<div class="container">
+<div class="container my-4">
   <div class="row">
-    <h4>検索結果画面</h4>
-  </div>
-  <div class="row">
-    <h5>
-      <%= category_text(@category) %>
-      <strong><%= @word %></strong>
-      の検索結果
-    </h5>
-  </div>
-  <div class="row">
-    <%= render "admin/items/table", items: @search_items %>
+    <div class="col">
+      <%= render "public/items/index", items: @show_items, heading_text: category_text(@word, @category), count: @search_items_count %>
+    </div>
   </div>
 </div>
+
