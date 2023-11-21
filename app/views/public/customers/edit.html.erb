@@ -1,43 +1,70 @@
-<h1>Public::Customers#edit</h1>
-<h4>会員情報編集</h4>
-<%= form_with model: @customer, url: mypage_update_customers_path, method: :patch do |f| %>
-  <table>
-    <tbody>
-      <tr>
-        <th>氏名</th>
-        <td><%= f.text_field :last_name, autofocus: true %></td>
-        <td><%= f.text_field :first_name %></td>
-      </tr>
-      <tr>
-        <th>フリガナ</th>
-        <td><%= f.text_field :last_name_kana %></td>
-        <td><%= f.text_field :first_name_kana %></td>
-      </tr>
-      <tr>
-        <th>郵便番号</th>
-        <td><%= f.text_field :zip_code %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= f.text_field :address %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= f.text_field :telephone_number %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= f.text_field :email %></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th></th>
-        <td><%= f.submit "編集内容を保存する" %></td>
-        <td><%= link_to confirm_customers_path do %>退会する<% end %></td>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h3 class="marked-heading">会員情報編集</h3>
+      <%= render "layouts/errors", model: @customer %>
+      <%= form_with model: @customer, url: mypage_update_customers_path, method: :patch do |f| %>
+        <div class="container">
+          <%= render "shared/customers-detail-row", label: "氏名" do %>
+            <div class="form-row">
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :last_name, class: "form-control" %>
+              </div>
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :first_name, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "shared/customers-detail-row", label: "フリガナ" do %>
+            <div class="form-row">
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :last_name_kana, class: "form-control" %>
+              </div>
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :first_name_kana, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "shared/customers-detail-row", label: "郵便番号" do %>
+            <div class="form-row">
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :zip_code, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "shared/customers-detail-row", label: "住所" do %>
+            <div class="form-row">
+              <div class="col-12 col-lg-8">
+                <%= f.text_field :address, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "shared/customers-detail-row", label: "電話番号" do %>
+            <div class="form-row">
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :telephone_number, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+          <%= render "shared/customers-detail-row", label: "メールアドレス" do %>
+            <div class="form-row">
+              <div class="col-6 col-lg-4">
+                <%= f.text_field :email, class: "form-control" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="w-75 d-flex justify-content-around align-items-center mt-4">
+            <%= f.button type: :submit, class: "btn btn-success" do %>
+              編集内容を保存
+            <% end %>
+            <%= link_to confirm_customers_path, class: "btn btn-danger" do %>
+              退会する
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
