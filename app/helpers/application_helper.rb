@@ -34,7 +34,8 @@ module ApplicationHelper
     number_to_currency(
       number,
       unit: currency_symbol,
-      precision: 0
+      precision: 0,
+      format: "%u%n"
     )
   end
 
