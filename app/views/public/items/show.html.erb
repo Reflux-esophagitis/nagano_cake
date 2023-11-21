@@ -24,7 +24,7 @@
             <%= f.hidden_field :item_id, value: @item.id %>
             <div class="d-flex">
               <div class="w-50 text-center">
-                <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, { include_blank: "個数選択" }, class: "form-control form-control" %>
+                <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, { include_blank: "個数選択" }, class: "form-control" %>
               </div>
               <div class="w-50 text-center">
                 <%= f.submit "カートに追加", class: "btn btn-success" %>
