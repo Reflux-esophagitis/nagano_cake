@@ -1,8 +1,10 @@
-<%= @customer.full_name %>
-<% @orders.each do |order| %>
-  <%= order.name %>
-  <%= order.full_address %>
-  <%= order.payment_method %>
-  <%= order.status %>
-  <%= order.total_price %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col mt-4">
+      <h3 class="marked-heading">
+        <%= @customer.full_name %>さんの注文履歴一覧
+      </h3>
+      <%= render "admin/orders/index/table", orders: @orders, show_customer: false %>
+    </div>
+  </div>
+</div>

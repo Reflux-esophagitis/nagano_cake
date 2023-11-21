@@ -1,43 +1,8 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
-
-<div>
-  <% # テスト用のログイン/ログアウトリンク %>
-
-  <% if admin_signed_in? %>
-    <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-  <% else %>
-    <%= link_to "管理者ログイン", new_admin_session_path %>
-  <% end %>
-</div>
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2>注文履歴一覧</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>購入日時</th>
-            <th>購入者</th>
-            <th>注文個数</th>
-            <th>注文ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @orders.each do |order| %>
-          <tr>
-            <td>
-              <%= link_to admin_order_path(order) do %>
-                <%= order.created_at.strftime("%Y/%m/%d %H:%M") %>
-              <% end %>
-            </td>
-            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
-            <td><%= order.order_details.sum(:amount) %></td>
-            <td><%= order.status_i18n %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col mt-4">
+      <h3 class="marked-heading">注文履歴一覧</h3>
+      <%= render "admin/orders/index/table", orders: @orders, show_customer: true %>
     </div>
   </div>
 </div>
