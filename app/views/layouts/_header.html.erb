@@ -26,7 +26,6 @@
         </div>
       </div>
       <div id="search-form" class="ml-auto">
-        <!-- 検索フォーム仮設置 -->
         <%= form_with url: search_form_action, method: :get, class: "d-flex justify-content-center align-items-center" do |f| %>
           <%= f.text_field :word, class: "form-control form-control-sm" %>
           <%= f.hidden_field :category, value: "item" %>

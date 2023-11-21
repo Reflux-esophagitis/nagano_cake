@@ -1,8 +1,8 @@
 module Public::SearchesHelper
-  def category_text(category)
+  def category_text(word, category)
     categories = {
-      "item" => "商品名：",
-      "genre" => "ジャンル名："
+      "item" => "#{word}の検索結果",
+      "genre" => "#{word}一覧"
     }
     categories[category]
   end
