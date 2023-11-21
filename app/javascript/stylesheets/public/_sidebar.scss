@@ -1,0 +1,55 @@
+#genres-search {
+  position: sticky;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 16rem;
+  top: 1rem;
+}
+
+.genres {
+  &-heading {
+    position: relative;
+    line-height: 3.2rem;
+    text-align: center;
+    font-size: 1.625rem;
+    font-family: "Shippori Mincho B1";
+    border-bottom: 3px double;
+    border-top: 1px solid;
+    border-color: hsl(0 0% 72%);
+  }
+
+  &-list {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+    font-size: 1.125rem;
+  }
+
+  &-list-item {
+    display: contents;
+  }
+
+  &-genre-name {
+    grid-area: name;
+  }
+
+  &-icon-chevron {
+    grid-area: icon;
+    justify-self: center;
+    font-size: 0.72rem;
+    color: hsl(0 0% 72%);
+  }
+
+  &-anchor {
+    display: grid;
+    grid-template: "name icon" / 1fr 1rem;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    border-bottom: 1px solid;
+    border-color: hsl(0 0% 72%);
+    color: inherit;
+  }
+}

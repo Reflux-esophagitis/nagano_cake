@@ -1,16 +1,16 @@
 <% flash.each do |message_type, message| %>
   <% case message_type %>
   <% when "notice" %>
-    <div class="alert alert-success d-flex justify-content-center align-items-center">
+    <%= render "layouts/alert", type: :notice do %>
       <div class="font-weight-bold">
         <i class="fa-solid fa-check mr-2"></i><%= message %>
       </div>
-    </div>
+    <% end %>
   <% when "alert" %>
-    <div class="alert alert-warning d-flex justify-content-center align-items-center">
+    <%= render "layouts/alert", type: :alert do %>
       <div class="font-weight-bold">
         <i class="fa-solid fa-triangle-exclamation mr-2"></i><%= message %>
       </div>
-    </div>
+    <% end %>
   <% end %>
 <% end %>

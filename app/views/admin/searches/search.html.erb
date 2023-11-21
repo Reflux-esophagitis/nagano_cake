@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <h4>検索結果画面</h4>
+  </div>
+  <!--ジャンルが一致する場合表示(完全一致のみ)-->
+  <% unless @search_genre_items.empty? %>
+    <div class="row">
+      <h5>
+        ジャンル名：
+        <strong><%= @word %></strong>
+        の検索結果
+      </h5>
+    </div>
+    <div class="row">
+      <%= render "admin/items/table", items: @search_genre_items %>
+    </div>
+  <% end %>
+  <!--商品名が一致する場合表示(部分一致も含む)-->
+  <% unless @search_name_items.empty? %>
+    <div class="row">
+      <h5>
+        商品名：
+        <strong><%= @word %></strong>
+        の検索結果
+      </h5>
+    </div>
+    <div class="row">
+      <%= render "admin/items/table", items: @search_name_items %>
+    </div>
+  <% end %>
+  <!--会員名が一致する場合表示(部分一致も含む)-->
+  <% unless @search_name_customers.empty? %>
+    <div class="row">
+      <h5>
+        顧客名：
+        <strong><%= @word %></strong>
+        の検索結果
+      </h5>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "admin/customers/customers_table", collection: @search_name_customers, as: :customer %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
