@@ -96,10 +96,10 @@ class Public::OrdersController < ApplicationController
 
     # 新規住所を登録して配送先として使用
     def set_address_from_params
-      if params[:order][:zip_code].blank? || params[:order][:address].blank? || params[:order][:name].blank?
-        redirect_to new_order_path
+      if address_params.values.any?(&:blank?)
+        redirect_to new_order_path, flash: { error: "配送先が入力されていません" }
       else
-        assign_address(params[:order][:zip_code], params[:order][:address], params[:order][:name])
+        assign_address(*address_params.values)
         current_customer.addresses.create(address_params)
       end
     end
