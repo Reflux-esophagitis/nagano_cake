@@ -1,0 +1,34 @@
+<% cart_items.each do |cart_item| %>
+  <%
+    item = cart_item.item
+    taxed_price = item.taxed_price
+    amount = cart_item.amount
+  %>
+  <tr>
+    <td>
+      <!--画像サイズは仮の数字です-->
+      <%= image_tag item.image, size: "48x48" %>
+      <%= item.name %>
+    </td>
+    <td><%= to_jpy_format(taxed_price, false) %></td>
+    <td>
+      <%= form_with model: cart_item, method: :patch, local: false do |f| %>
+        <%= f.hidden_field :item_id, value: item.id %>
+        <div class="form-group d-flex align-items-center">
+          <div>
+            <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, {selected: cart_item.amount}, class: "form-control" %>
+          </div>
+          <%= f.button type: "submit", remote: true, class: "btn btn-success mx-2" do %>
+            変更
+          <% end %>
+        </div>
+      <% end %>
+    </td>
+    <td><%= to_jpy_format(cart_item.subtotal, false) %></td>
+    <td>
+      <%= link_to cart_item_path(cart_item.item.id), method: :delete, remote: true, "data-confirm": "#{item.name}を削除しますか？", class: "btn btn-danger btn-sm" do %>
+        削除する
+      <% end %>
+    </td>
+  </tr>
+<% end %>

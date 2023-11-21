@@ -22,25 +22,30 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = current_customer.cart_items.find_by(
+    @cart_items = current_customer.cart_items
+    @cart_item = current_customer.cart_items.find_by(
       item_id: params[:cart_item][:item_id]
     )
 
     selected_amount = params[:cart_item][:amount]
-    cart_item.update(amount: selected_amount)
+    @cart_item.update(amount: selected_amount)
 
-    redirect_to cart_items_path
+    # redirect_to cart_items_path
+    render :cart_table
   end
 
   def destroy
-    cart_item = current_customer.cart_items.find_by(item_id: params[:id])
-    if cart_item
-      item_name = cart_item.item.name
-      cart_item.destroy
-      redirect_to cart_items_path, notice: "#{item_name}を削除しました。"
+    @cart_items = current_customer.cart_items
+    @cart_item = current_customer.cart_items.find_by(item_id: params[:id])
+    if @cart_item
+      # item_name = cart_item.item.name
+      @cart_item.destroy
+      # redirect_to cart_items_path, notice: "#{item_name}を削除しました。"
+      render :cart_table
     else
       # カート内アイテムが見つからなかったときの処理
-      redirect_to cart_items_path, alert: "選択した商品が見つかりませんでした。"
+      # redirect_to cart_items_path, alert: "選択した商品が見つかりませんでした。"
+      render :cart_table
     end
   end
 
