@@ -6,19 +6,18 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new
     @order_items = current_customer.cart_items
-    @order.total_price = CartItem.total_price(@order_items)
-    @order.customer_id = current_customer.id
-    @order.payment_method = params[:order][:payment_method].to_i
-    @order.postage = POSTAGE
+    @order = current_customer.orders.new({
+      total_price: CartItem.total_price(@order_items),
+      payment_method: params[:order][:payment_method].to_i,
+      postage: POSTAGE
+    })
     set_address
   end
 
   def create
     @order = Order.new(order_params)
     @order.save
-    byebug
     create_details(@order)
     redirect_to complete_orders_path
   end
