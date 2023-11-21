@@ -13,28 +13,29 @@
         <small>(税込)</small>
       </div>
       <div>
-        <% if @item.is_active %>
-          <% if customer_signed_in? %>
-            <%= form_with model: @cart_item do |f| %>
-              <%= f.hidden_field :item_id, value: @item.id %>
-              <div class="d-flex">
-                <div class="w-50 text-center">
-                  <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, { include_blank: "個数選択" }, class: "form-control form-control" %>
-                </div>
-                <div class="w-50 text-center">
-                  <%= f.submit "カートに追加", class: "btn btn-success" %>
-                </div>
+        <% if !@item.is_active %>
+          <!-- 販売停止時 -->
+          <div class="alert alert-dark mt-4 font-weight-bold">
+            申し訳ございませんが、この商品は現在販売停止中となっております。
+          </div>
+        <% elsif customer_signed_in? %>
+          <!-- ログイン時 -->
+          <%= form_with model: @cart_item, local: true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <div class="d-flex">
+              <div class="w-50 text-center">
+                <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, { include_blank: "個数選択" }, class: "form-control form-control" %>
               </div>
-            <% end %>
-          <% else %>
-            <div class="alert alert-info mt-4 font-weight-bold">
-              商品を購入するには<%= link_to "ログイン", new_customer_session_path %>してください。<br>
-              アカウントをお持ちでない方は<%= link_to "こちら", new_customer_registration_path %>から登録できます。
+              <div class="w-50 text-center">
+                <%= f.submit "カートに追加", class: "btn btn-success" %>
+              </div>
             </div>
           <% end %>
         <% else %>
-          <div class="alert alert-dark mt-4 font-weight-bold">
-            申し訳ございませんが、この商品は現在販売停止中となっております。
+          <!-- ログアウト時 -->
+          <div class="alert alert-info mt-4 font-weight-bold">
+            商品を購入するには<%= link_to "ログイン", new_customer_session_path %>してください。<br>
+            アカウントをお持ちでない方は<%= link_to "こちら", new_customer_registration_path %>から登録できます。
           </div>
         <% end %>
       </div>
