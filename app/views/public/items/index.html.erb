@@ -1,14 +1,7 @@
-<h1>Public::Items#index</h1>
-<div class="container">
+<div class="container my-4">
   <div class="row">
     <div class="col">
-      <% @items.each do |item| %>
-        <%= image_tag item.image, size: "100x100" %>
-        <%= link_to item_path(item) do %><%= item.name %><% end %>
-        <%= item.introduction %>
-        <%= item.non_taxed_price %>
-        <%= item.is_active %>
-      <% end %>
+      <%= render "index", items: @items, heading_text: "商品一覧", count: @items_count %>
     </div>
   </div>
 </div>

@@ -1,17 +1,20 @@
-<div class="card">
-  <div>
-    <!--画像サイズは仮の数字です-->
-    <%= image_tag item.image || "", size: "100x100" %>
+<%= link_to item_path(item), class: "d-block p-2 text-decoration-none text-dark" do %>
+  <div class="card">
+    <div class="card-body">
+      <div class="card-img-top d-flex justify-content-center mb-2">
+        <%= image_tag item.image, height: 128, decoding: "async", loading: "lazy", alt: item_alt_text(item) %>
+      </div>
+      <div class="card-title h6 marked-heading">
+          <%= item.name %>
+      </div>
+      <div class="card-text">
+        <p class="px-2">
+          <%= item.introduction %>
+        </p>
+        <div class="font-weight-bold">
+          <%= to_jpy_format(item.non_taxed_price, true) %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <%= link_to item_path(item) do %>
-      <%= item.name %>
-    <% end %>
-  </div>
-  <div>
-    <%= item.introduction %>
-  </div>
-  <div>
-    ￥<%= item.non_taxed_price.to_s(:delimited) %>
-  </div>
-</div>
+<% end %>
