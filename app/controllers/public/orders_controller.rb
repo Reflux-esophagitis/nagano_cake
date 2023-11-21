@@ -83,15 +83,18 @@ class Public::OrdersController < ApplicationController
       end
     end
 
+    # ログインユーザーの登録情報を使用
     def set_address_from_customer
       assign_address(current_customer.zip_code, current_customer.address, current_customer.full_name)
     end
 
+    # ユーザーが以前登録した配送先を使用
     def set_address_from_registered
       registered_address = current_customer.addresses.find(params[:order][:address_id])
       assign_address(registered_address.zip_code, registered_address.address, registered_address.name)
     end
 
+    # 新規住所を登録して配送先として使用
     def set_address_from_params
       if params[:order][:zip_code].blank? || params[:order][:address].blank? || params[:order][:name].blank?
         redirect_to new_order_path
@@ -101,6 +104,7 @@ class Public::OrdersController < ApplicationController
       end
     end
 
+    # 登録用メソッド
     def assign_address(zip_code, address, name)
       @order.zip_code = zip_code
       @order.address = address
