@@ -1,4 +1,6 @@
 class Admin::SearchesController < ApplicationController
+  before_action :admin_check
+
   def search
     @word = params[:word]
     search_items
@@ -6,6 +8,10 @@ class Admin::SearchesController < ApplicationController
   end
 
   private
+    def admin_check
+      redirect_to root_path unless admin_signed_in?
+    end
+
     def search_items
       # 商品名検索
       @search_name_items = Item.where("name LIKE?", "%#{@word}%")

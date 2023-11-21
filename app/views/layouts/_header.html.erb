@@ -29,6 +29,7 @@
         <!-- 検索フォーム仮設置 -->
         <%= form_with url: search_form_action, method: :get, class: "d-flex justify-content-center align-items-center" do |f| %>
           <%= f.text_field :word, class: "form-control form-control-sm" %>
+          <%= f.hidden_field :category, value: "item" %>
           <%= button_tag type: "submit", class: "ml-2 btn btn-sm" do %>
            <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
           <% end %>
