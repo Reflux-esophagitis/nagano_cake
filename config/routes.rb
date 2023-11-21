@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
 
     resources :addresses, except: %i[new show]
+
+    get 'searches/search', as: "customer_search"
   end
 
   namespace :admin do

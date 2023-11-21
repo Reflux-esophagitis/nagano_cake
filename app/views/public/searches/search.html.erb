@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <h4>検索結果画面</h4>
+  </div>
+  <div class="row">
+    <h5>
+      <%= category_text(@category) %>
+      <strong><%= @word %></strong>
+      の検索結果
+    </h5>
+  </div>
+  <div class="row">
+    <%= render "admin/items/table", items: @search_items %>
+  </div>
+</div>
