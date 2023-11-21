@@ -1,12 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <aside class="col-lg-2">
-      <div>ジャンル検索</div>
-      <ul>
-        <% @genres.each do |genre| %>
-          <li><%= genre.name %></li>
-        <% end %>
-      </ul>
+      <%= render "public/homes/sidebar" %>
     </aside>
     <div class="col-lg-10">
       <div id="main-visual">
