@@ -2,8 +2,8 @@
   <%= heading_text %>
   <span class="h4"><%= counts_text(count) %></span>
 </h2>
-<div class="row row-cols-4">
-  <%= render partial: "item-card", collection: items, as: :item %>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4">
+  <%= render partial: "public/items/item-card", collection: items, as: :item %>
 </div>
 <div class="d-flex justify-content-center">
   <%= paginate items %>

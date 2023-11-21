@@ -22,7 +22,7 @@
       <section class="my-5">
         <h1 class="marked-heading">新着商品</h1>
         <div>
-          <div class="d-flex">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4">
             <%= render partial: "public/items/item-card", collection: @new_items, as: :item %>
           </div>
           <div>
