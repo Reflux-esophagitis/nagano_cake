@@ -25,6 +25,6 @@ class Order < ApplicationRecord
   end
 
   def complete_all_details?
-    order_details.all? { |detail| detail.status == 3 }
+    order_details.all? { |detail| detail.status_before_type_cast == 3 }
   end
 end
