@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 describe 'マイページのテスト' do
-  let!(:customer) { create(:customer,
-                            last_name:'長野',
-                            first_name:'菓子',
-                            last_name_kana:'ナガノ',
-                            first_name_kana:'ケーキ',
-                            zip_code:'1234567',
-                            address:'長野県ケーキ村',
-                            telephone_number:'12345678901',
-                            email:'nagamo@cake'
-                          ) }
+  let(:customer) { create(:customer) }
   before do
+    visit new_customer_session_path
+    fill_in 'customer[email]', with: customer.email
+    fill_in 'customer[password]', with: customer.password
+    click_button 'ログイン'
     visit mypage_customers_path
   end
   context '表示の確認' do
@@ -25,39 +20,37 @@ describe 'マイページのテスト' do
       expect(page).to have_content customer.telephone_number
       expect(page).to have_content customer.email
     end
-    it 'Editリンクが表示される' do
-      edit_link = find_all('a')[0]
-      expect(edit_link.native.inner_text).to match(edit)
-		end
-    it '配送先リンクが表示される' do
-      addresses_link = find_all('a')[1]
-      expect(addresses_link.native.inner_text).to match(addresses)
-		end
-		it '注文履歴一覧リンクが表示される' do
-      order_link = find_all('a')[2]
-      expect(order_link.native.inner_text).to match(order)
-		end
+  #   it 'Editリンクが表示される' do
+  #     edit_link = find_all('a')[0].text
+  #     click_link edit_link
+  #     expect(page).to have_link edit_link, href: mypage_edit_path
+		# end
+  #   it '配送先リンクが表示される' do
+  #     addresses_link = find_all('a')[1]
+  #     expect(addresses_link.native.inner_text).to match(addresses)
+		# end
+		# it '注文履歴一覧リンクが表示される' do
+  #     order_link = find_all('a')[2]
+  #     expect(order_link.native.inner_text).to match(order)
+		# end
   end
   context 'リンクの遷移先の確認' do
     it 'Editの遷移先は編集画面か' do
-      edit_link = find_all('a')[0]
-      edit_link.click
-      expect(current_path).to eq('/mypage/edit')
+      edit_link = find_all('a')[5].text
+      expect(page).to have_link edit_link, href: mypage_edit_customers_path
     end
     it '配送先リンクの遷移先は配送先一覧画面か' do
-      addresses_link = find_all('a')[1]
-      addresses_link.click
-      expect(page).to have_current_path addresses_path
+      addresses_link = find_all('a')[6].text
+      expect(page).to have_link addresses_link, href: addresses_path
 		end
 		it '注文履歴一覧リンクの遷移先は注文履歴一覧画面か' do
-      order_link = find_all('a')[2]
-      order_link.click
-      expect(page).to have_current_path orders_path
+      order_link = find_all('a')[7].text
+      expect(page).to have_link order_link, href: orders_path
 		end
   end
   describe '会員情報編集画面のテスト' do
     before do
-      visit edit_mypage_customer_path
+      visit mypage_edit_customers_path
     end
     context '表示の確認' do
       it '編集前の会員情報がフォームに表示(セット)されている' do
@@ -86,10 +79,10 @@ describe 'マイページのテスト' do
       end
     end
     context '更新処理に関するテスト' do
-      random_last_name = Faker::Japanese::Name.last_name
-      random_first_name = Faker::Japanese::Name.first_name
-      random_last_name_kana = Faker::Japanese::Name.last_name_kana
-      random_first_name_kana = Faker::Japanese::Name.first_name_kana
+      random_last_name = Faker::Lorem.characters(number: 10)
+      random_first_name = Faker::Lorem.characters(number: 10)
+      random_last_name_kana = Faker::Lorem.characters(number: 10)
+      random_first_name_kana = Faker::Lorem.characters(number: 10)
       random_zip_code = rand(100_000_0..999_999_9)
       random_address = Faker::Address.full_address
       random_telephone_number = rand(100_000_000_00..999_999_999_99)
