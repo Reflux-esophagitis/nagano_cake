@@ -24,10 +24,10 @@ class Admin::SearchesController < ApplicationController
       #検索フォームに入力がない場合、元のページにリダイレクト
       redirect_to request.referer, alert: "検索フォームに文字を入力してください" if @word.empty?
 
-      if @category == "item" && !@word.empty?
+      if @category == "item"
         # 商品名検索
         @search_results = Item.looks_name(@word)
-      elsif @category == "customer" && !@word.empty?
+      elsif @category == "customer"
         # 顧客名検索
         @search_results = Customer.looks_name(@word)
       end
