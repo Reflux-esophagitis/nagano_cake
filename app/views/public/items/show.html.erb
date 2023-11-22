@@ -3,7 +3,7 @@
     <div class="col-md-3 text-center">
       <%= image_tag @item.image %>
     </div>
-    <div class="offset-md-1 col-md-8">
+    <div class="offset-md-1 col-md-7">
       <h2 class="marked-heading"><%= @item.name %></h2>
       <p class="mt-2 mb-5">
         <%= @item.introduction %>
@@ -20,15 +20,12 @@
           </div>
         <% elsif customer_signed_in? %>
           <!-- ログイン時 -->
+          <%= render "layouts/errors", model: @cart_item %>
           <%= form_with model: @cart_item, local: true do |f| %>
             <%= f.hidden_field :item_id, value: @item.id %>
-            <div class="d-flex">
-              <div class="w-50 text-center">
-                <%= f.select :amount, amount_range, { include_blank: "個数選択" }, class: "form-control" %>
-              </div>
-              <div class="w-50 text-center">
-                <%= f.submit "カートに追加", class: "btn btn-success" %>
-              </div>
+            <div class="form-row">
+              <%= f.select :amount, amount_range, { include_blank: "個数選択" }, class: "form-control offset-1 col-5 col-xl-3" %>
+              <%= f.submit "カートに追加", class: "btn btn-success offset-1 col-4 col-xl-3" %>
             </div>
           <% end %>
         <% else %>

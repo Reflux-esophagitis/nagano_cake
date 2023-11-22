@@ -1,2 +1,2 @@
 $('#cart_items_table').html('<%= j(render "table", cart_item: @cart_item, cart_items: @cart_items) %>');
-$('#flash').html('<%= j(render "layouts/notification", cart_item: @cart_item) %>');
+$('#flash').html('<%= j(render "layouts/notification") %>');
