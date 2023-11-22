@@ -4,11 +4,18 @@
 
 #main-visual {
   position: relative;
+  margin-top: -1.5rem;
 }
 
 #mv-picture {
+  $aspect-ratio: 16 / 9;
+  $width-ratio: 0.8;
+  $min-height: 256px;
+  $height: calc((100vw * $width-ratio) / $aspect-ratio);
+  $max-height: calc(1080px * $width-ratio);
+
   width: 100%;
-  height: max(256px, calc(64vw / (16 / 9)));
+  height: clamp($min-height, $height, $max-height);
   filter: brightness(0.96);
 }
 

@@ -1,22 +1,18 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="text-center my-5 py-3">
-        <h3 class="font-weight-bold my-5">本当に退会しますか？</h3>
-        <p class="h5 my-4">
-          退会すると、会員登録情報や<br/>
-          これまでの購入履歴が閲覧できなくなります。<br/>
-          退会する場合は、「退会する」をクリックしてください。
-        </p>
-        <div>
-          <%= link_to mypage_customers_path, class:"btn btn-primary mx-4" do %>
-            退会しない
-          <% end %>
-          <%= link_to leave_customers_path, method: :patch, data: { confirm: "本当に退会しますか？"}, class: "btn btn-danger mx-4" do %>
-            退会する
-          <% end %>
-        </div>
-      </div>
+<%= render "public/layouts/frame", type: :standard do %>
+  <div class="text-center my-5 py-3">
+    <h3 class="font-weight-bold my-5">本当に退会しますか？</h3>
+    <p class="h5 my-4">
+      退会すると、会員登録情報や<br/>
+      これまでの購入履歴が閲覧できなくなります。<br/>
+      退会する場合は、「退会する」をクリックしてください。
+    </p>
+    <div>
+      <%= link_to mypage_customers_path, class:"btn btn-primary mx-4" do %>
+        退会しない
+      <% end %>
+      <%= link_to leave_customers_path, method: :patch, data: { confirm: "本当に退会しますか？"}, class: "btn btn-danger mx-4" do %>
+        退会する
+      <% end %>
     </div>
   </div>
-</div>
+<% end %>
