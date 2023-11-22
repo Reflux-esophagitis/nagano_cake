@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+  before_action :check_cart_empty, only: %i[new confirm create complete]
 
   def new
     @order = Order.new
@@ -97,7 +98,7 @@ class Public::OrdersController < ApplicationController
     # 新規住所を登録して配送先として使用
     def set_address_from_params
       if address_params.values.any?(&:blank?)
-        redirect_to new_order_path, flash: { error: "配送先が入力されていません" }
+        redirect_to new_order_path, alert: "配送先が入力されていません"
       else
         assign_address(*address_params.values)
         current_customer.addresses.create(address_params)
@@ -109,6 +110,12 @@ class Public::OrdersController < ApplicationController
       @order.zip_code = zip_code
       @order.address = address
       @order.name = name
+    end
+
+    def check_cart_empty
+      if current_customer.cart_items.empty?
+        redirect_to items_path, alert: "カートに商品がありません"
+      end
     end
 
 end
