@@ -13,13 +13,15 @@
 
   <body>
     <%= render "layouts/header" %>
-    <main>
+    <div id="primary">
       <%= yield :error %>
       <div id="flash">
         <%= render "layouts/notification" %>
       </div>
-      <%= yield %>
-    </main>
+      <main id="main">
+        <%= yield %>
+      </main>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>
