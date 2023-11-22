@@ -11,12 +11,13 @@ class Public::SearchesController < ApplicationController
     def search_items
       if @category == "item" && !@word.empty?
         # 商品名検索
-        @search_items = Item.where("name LIKE?", "%#{@word}%")
+        @search_items = Item.looks_name(@word)
       elsif @category == "genre" && !@word.empty?
         # 商品ジャンル検索
-        @search_items = Item.includes(:genre).where(genres: { name: @word }).references(:genre)
+        @search_items = Item.looks_genre(@word)
       else
         redirect_to request.referer, alert: "検索フォームに文字を入力してください"
       end
     end
+
 end

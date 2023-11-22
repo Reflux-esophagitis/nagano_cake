@@ -25,4 +25,10 @@ class Customer < ApplicationRecord
     super && (is_active == true)
   end
 
+  def self.looks_name(word)
+    Customer.where(
+        "first_name LIKE ? OR last_name LIKE ?", "%#{word}%", "%#{word}%"
+    )
+  end
+
 end
