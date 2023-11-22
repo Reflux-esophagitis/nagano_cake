@@ -20,6 +20,7 @@
   img {
     width: auto;
     height: 4vmin;
+    user-select: none;
     mix-blend-mode: soft-light;
     filter: invert(1);
   }

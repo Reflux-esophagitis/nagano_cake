@@ -1,23 +1,44 @@
-<h1>Public::Items#show</h1>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= image_tag @item.image, size: "100x100" %>
-      <%= link_to item_path(@item) do %><%= @item.name %><% end %>
-      <%= @item.introduction %>
-      <%= @item.non_taxed_price %>
-      <% if @item.is_active %>
-         <p>販売中</p>
-       <% else %>
-         <p>販売停止</p>
-      <% end %>
-      <% if customer_signed_in? %>
-        <%= form_with model: @cart_item do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, include_blank: "個数選択" %>
-          <%= f.submit 'カートに追加' %>
+<%= render "public/layouts/frame", type: :sidebar do %>
+  <div class="row mt-2">
+    <div class="col-md-3 text-center">
+      <%= image_tag @item.image %>
+    </div>
+    <div class="offset-md-1 col-md-8">
+      <h2 class="marked-heading"><%= @item.name %></h2>
+      <p class="mt-2 mb-5">
+        <%= @item.introduction %>
+      </p>
+      <div class="mb-3">
+        <span class="h4 font-weight-bold"><%= to_jpy_format(@item.taxed_price, true) %></span>
+        <small>(税込)</small>
+      </div>
+      <div>
+        <% if !@item.is_active %>
+          <!-- 販売停止時 -->
+          <div class="alert alert-dark mt-4 font-weight-bold">
+            申し訳ございませんが、この商品は現在販売停止中となっております。
+          </div>
+        <% elsif customer_signed_in? %>
+          <!-- ログイン時 -->
+          <%= form_with model: @cart_item, local: true do |f| %>
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <div class="d-flex">
+              <div class="w-50 text-center">
+                <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, { include_blank: "個数選択" }, class: "form-control" %>
+              </div>
+              <div class="w-50 text-center">
+                <%= f.submit "カートに追加", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <!-- ログアウト時 -->
+          <div class="alert alert-info mt-4 font-weight-bold">
+            商品を購入するには<%= link_to "ログイン", new_customer_session_path %>してください。<br>
+            アカウントをお持ちでない方は<%= link_to "こちら", new_customer_registration_path %>から登録できます。
+          </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
