@@ -1,13 +1,21 @@
-<div class="container-fluid my-4">
-  <div class="row">
-    <% case type %>
-    <% when :sidebar %>
-      <div class="col-lg-3">
+<% case type %>
+<% when :sidebar %>
+  <div class="container-fluid my-4">
+    <div class="row">
+      <aside class="col-lg-2 mt-4">
         <%= render "public/homes/sidebar" %>
-      </div>
-      <div class="col-lg-8 mx-4">
+      </aside>
+      <div class="col-lg-10">
         <%= yield %>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+<% when :standard %>
+  <div class="container my-4">
+    <div class="row">.
+      <div class="col mx-auto">
+        <%= yield %>
+      </div>
+    </div>
+  </div
+<% end %>

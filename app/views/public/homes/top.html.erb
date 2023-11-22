@@ -1,37 +1,30 @@
-<div class="container-fluid">
-  <div class="row">
-    <aside class="col-lg-2 mt-4">
-      <%= render "public/homes/sidebar" %>
-    </aside>
-    <div class="col-lg-10">
-      <div id="main-visual">
-        <div id="mv-picture">
-        </div>
-        <div id="mv-logo">
-          <%= image_tag "logo.svg", draggable: false %>
-        </div>
-        <div id="mv-text-box">
-          <p id="mv-text">
-            ようこそ、ながのCAKEへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。<br>
-          </p>
-        </div>
-      </div>
-      <section class="my-5">
-        <h1 class="marked-heading">新着商品</h1>
-        <div>
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4">
-            <%= render partial: "public/items/item-card", collection: @new_items, as: :item %>
-          </div>
-          <div>
-            <%= link_to items_path do %>
-              すべての商品を見る
-            <% end %>
-          </div>
-        </div>
-      </section>
+<%= render "public/layouts/frame", type: :sidebar, margin: false do %>
+  <div id="main-visual">
+    <div id="mv-picture">
+    </div>
+    <div id="mv-logo">
+      <%= image_tag "logo.svg", draggable: false %>
+    </div>
+    <div id="mv-text-box">
+      <p id="mv-text">
+        ようこそ、ながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員でない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要になります。<br>
+      </p>
     </div>
   </div>
-</div>
+  <section class="my-5">
+    <h1 class="marked-heading">新着商品</h1>
+    <div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4 mx-auto">
+        <%= render partial: "public/items/item-card", collection: @new_items, as: :item %>
+      </div>
+      <div>
+        <%= link_to items_path do %>
+          すべての商品を見る
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
