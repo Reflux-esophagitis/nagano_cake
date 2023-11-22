@@ -9,7 +9,7 @@ module Admin::SearchesHelper
   end
 
   def check_search_category(category)
-    category == "item" || "genre"
+    category == "item" || category == "genre"
   end
 
   def search_form_action
