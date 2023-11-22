@@ -14,4 +14,12 @@ class Item < ApplicationRecord
   def taxed_price
     non_taxed_price * (1 + TAX_RATE)
   end
+
+  def self.looks_name(word)
+    Item.where("name LIKE?", "%#{word}%")
+  end
+
+  def self.looks_genre(word)
+    Item.includes(:genre).where(genres: { name: word }).references(:genre)
+  end
 end
