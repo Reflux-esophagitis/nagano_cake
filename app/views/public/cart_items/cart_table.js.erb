@@ -1,2 +1,7 @@
-$('#cart_items_table').html('<%= j(render "table", cart_item: @cart_item, cart_items: @cart_items) %>');
-$('#flash').html('<%= j(render "layouts/notification") %>');
+$("#cart-items-table").html("<%= j(render partial: "table-row", collection: @cart_items, as: :cart_item) %>");
+$("#flash").html("<%= j(render "layouts/notification") %>");
+
+<% if @cart_items.empty? %>
+  $("#order-button").html("<%= j(render "order-button", disabled: true) %>");
+  $("#empty-cart-button").html("<%= j(render "empty-cart-button", disabled: true) %>");
+<% end %>
