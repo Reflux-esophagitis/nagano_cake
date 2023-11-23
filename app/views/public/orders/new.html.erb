@@ -1,64 +1,71 @@
-<div class="contaier">
-  <div class="row">
-    <h3 class="offset-2">注文情報入力</h3>
-  </div>
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <%= form_with model: @order, url: confirm_orders_path, local: true do |f| %>
-        <div class="payment_method">
-          <h4>支払い方法</h4>
-            <div class="ml-5">
-              <%= f.radio_button :payment_method, 0, checked: true %>
-              <%= f.label :payment_method, "クレジットカード" %>
-            </div>
-            <div class="ml-5">
-              <%= f.radio_button :payment_method, 1 %>
-              <%= f.label :payment_method, "銀行振込" %>
-            </div>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading my-3">注文情報入力</h3>
+  <%= form_with model: @order, url: confirm_orders_path, local: true, class: "mx-2" do |f| %>
+    <div class="payment_method">
+      <h4 class="marked-heading">支払い方法</h4>
+      <div class="form-group form-row">
+        <div class="custom-control custom-radio offset-1 col-11 my-1">
+          <%= f.radio_button :payment_method, 0, checked: true, class: "custom-control-input" %>
+          <%= f.label :payment_method_0, Order.payment_methods_i18n[:credit_card], class: "custom-control-label" %>
         </div>
-        <div class="addresses">
-          <h4>お届け先</h4>
-          <div class="customer_address ml-5">
-            <%= f.radio_button :address_method, 0, checked: true %>
-            <%= f.label :address_method, "ご自身の住所" %>
-            <div class="customer_address ml-3">
-              〒<%= current_customer.zip_code %>
-              <%= current_customer.address %>  <br>
-              <%= current_customer.full_name %>
-            </div>
+        <div class="custom-control custom-radio offset-1 col-11 my-1">
+          <%= f.radio_button :payment_method, 1, class: "custom-control-input" %>
+          <%= f.label :payment_method_1, Order.payment_methods_i18n[:transfer], class: "custom-control-label" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="addresses my-3">
+      <h4 class="marked-heading">お届け先</h4>
+
+      <div class="customer_address form-group form-row">
+        <div class="custom-control custom-radio offset-1 col-11 my-1">
+          <%= f.radio_button :address_method, 0, checked: true, class: "custom-control-input" %>
+          <%= f.label :address_method_0, "ご自身の住所", class: "custom-control-label" %>
+        </div>
+        <div class="customer_address offset-1 col-11 my-1">
+          <div class="m-1">〒<%= current_customer.zip_code %> <%= current_customer.address %></div>
+          <div class="m-1"><%= current_customer.full_name %></div>
+        </div>
+      </div>
+
+      <% unless @registered_addresses.empty? %>
+        <div class="registered_address form-group form-row">
+          <div class="custom-control custom-radio offset-1 col-11 my-1">
+            <%= f.radio_button :address_method, 1, class: "custom-control-input" %>
+            <%= f.label :address_method_1, "登録済住所から選択", class: "custom-control-label" %>
           </div>
-          <% unless @registered_addresses.empty? %>
-            <div class="registered_address ml-5">
-              <%= f.radio_button :address_method, 1 %>
-              <%= f.label :address_method, "登録済住所から選択" %>
-              <div>
-                <%= f.collection_select :address_id, @registered_addresses, :id, :full_address %>
-              </div>
+          <div class="offset-1 col-11 my-1">
+            <div class="form-group form-row mx-1">
+              <%= f.collection_select :address_id, @registered_addresses, :id, :full_address, {}, class: "form-control col" %>
             </div>
-          <% end %>
-          <div class="new_address ml-5">
-            <%= f.radio_button :address_method, 2 %>
-            <%= f.label :address_method, "新しいお届け先" %>
-            <div class="new_address_form ml-3">
-              <div class="form-group">
-                <%= f.label :zip_code, "郵便番号(ハイフン無し)" %>
-                <%= f.text_field :zip_code %>
-              </div>
-              <div class="form-group">
-                <%= f.label :address, "住所" %>
-                <%= f.text_field :address %>
-              </div>
-              <div class="form-group">
-                <%= f.label :name, "宛名" %>
-                <%= f.text_field :name %>
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>
+
+      <div class="new_address form-group form-row">
+        <div class="custom-control custom-radio offset-1 col-11 my-1">
+          <%= f.radio_button :address_method, 2, class: "custom-control-input" %>
+          <%= f.label :address_method_2, "新しいお届け先", class: "custom-control-label" %>
+        </div>
+        <div class="new_address_form offset-1 col-11 my-1">
+          <div class="form-group form-row mx-1 align-items-center">
+            <%= f.label :zip_code, "郵便番号(ハイフン無し)", class: "col-4 my-0" %>
+            <%= f.text_field :zip_code, class: "form-control col-4" %>
+          </div>
+          <div class="form-group form-row mx-1 align-items-center">
+            <%= f.label :address, "住所", class: "col-4 my-0" %>
+            <%= f.text_field :address, class: "form-control col-8" %>
+          </div>
+          <div class="form-group form-row mx-1 align-items-center">
+            <%= f.label :name, "宛名", class: "col-4 my-0" %>
+            <%= f.text_field :name, class: "form-control col-4" %>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+      </div>
     </div>
-  </div>
-</div>
+  <% end %>
+<% end %>
