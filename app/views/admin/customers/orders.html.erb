@@ -1,10 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="col mt-4">
-      <h3 class="marked-heading">
-        <%= @customer.full_name %>さんの注文履歴一覧
-      </h3>
-      <%= render "admin/orders/index/table", orders: @orders, show_customer: false %>
-    </div>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">
+    <%= @customer.full_name %>さんの注文履歴一覧
+  </h3>
+  <%= render "admin/orders/index/table", orders: @orders, show_customer: false %>
+  <div class="d-flex justify-content-center">
+    <%= paginate @orders %>
   </div>
-</div>
+<% end %>

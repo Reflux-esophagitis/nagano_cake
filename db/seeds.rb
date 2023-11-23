@@ -38,3 +38,6 @@ Seeds::Genres.create
 # 商品のSeed作成
 require_relative "seeds/items"
 Seeds::Items.create
+
+require_relative "seeds/orders"
+Seeds::Orders.create
