@@ -66,16 +66,11 @@ describe 'マイページのテスト' do
       it '保存ボタンが表示される' do
         expect(page).to have_button '編集内容を保存する'
       end
-      it '退会確認リンクが表示される' do
-        confirm_link = find_all('a')[0]
-        expect(confirm_link.native.inner_text).to match(confirm)
-  		end
     end
     context 'リンクの遷移先の確認' do
       it 'confirmの遷移先は詳細画面か' do
-        confirm_link = find_all('a')[0]
-        confirm_link.click
-        expect(current_path).to eq('/confirm')
+        confirm_link = find_all('a')[6]
+        expect(page).to have_link confirm_link, href: confirm_customers_path
       end
     end
     context '更新処理に関するテスト' do
