@@ -1,20 +1,20 @@
-<section class="container">
+<%= render "public/layouts/frame", type: :standard do %>
   <div class="d-flex justify-content-between">
-    <div class="h3">ショッピングカート</div>
+    <h3 class="marked-heading">ショッピングカート</h3>
     <div id="empty-cart-button">
       <%= render "empty-cart-button", disabled: @cart_items.empty? %>
     </div>
   </div>
   <% if @cart_items.size == 0 %>
-    <p>
+    <div class="m-5 text-center h5">
       カートは空です。
-    </p>
+    </div>
   <% else %>
-    <table class="table table-bordered">
+    <table class="table table-bordered my-3">
       <thead class="thead-light">
         <tr>
           <th>商品名</th>
-          <th>単価（税込）</th>
+          <th>単価<wbr>(税込)</th>
           <th>数量</th>
           <th>小計</th>
           <th></th>
@@ -25,22 +25,24 @@
       </tbody>
     </table>
   <% end %>
-  <div class="d-flex justify-content-between my-2">
-    <div>
+  <div class="row my-3">
+    <div class="offset-1 col-5 col-xl-3">
       <%= link_to root_path, class: "btn btn-primary" do %>
         買い物を続ける
       <% end %>
     </div>
-    <div class="d-flex">
-      <div>
-        合計金額
-      </div>
-      <div>
-        <%= to_jpy_format(@total_price, false) %>
-      </div>
+    <div class="offset-1 offset-xl-5 col-5 col-xl-3">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th scope="row" class="bg-light">合計金額</th>
+            <td><%= to_jpy_format(@total_price, false) %></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div id="order-button" class="my-2 text-center">
     <%= render "order-button", disabled: @cart_items.empty? %>
   </div>
-</section>
+<% end %>
