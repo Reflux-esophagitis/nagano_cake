@@ -1,5 +1,5 @@
 class Public::OrdersController < ApplicationController
-  before_action :check_cart_empty, only: %i[new confirm create complete]
+  before_action :check_cart_empty, only: %i[new confirm create]
 
   def new
     @order = Order.new
