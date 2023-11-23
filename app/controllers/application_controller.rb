@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
   # sign_inページ以外のadminが含まれるurlにリクエストする場合 TRUE
   def admin_area?
-    request.fullpath.include?("/admin") && !request.fullpath.include?("admin/sign_in")
+    request.fullpath.include?("/admin") && !request.fullpath.include?("/admin/sign_in")
   end
 
   protected
