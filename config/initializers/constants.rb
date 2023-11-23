@@ -1,5 +1,5 @@
-# 消費税率 8%
-TAX_RATE = 0.08;
+# 消費税率 10%
+TAX_RATE = 0.10
 
 # 商品の数量を選択できる範囲
 MIN_SELECTABLE_AMOUNT = 1

@@ -6,7 +6,7 @@
 <tr>
   <td>
     <%= image_tag item.image, size: "48x48" %>
-    <%= item.name %>
+    <span class="d-inline-block"><%= item.name %></span>
   </td>
   <td><%= to_jpy_format(taxed_price, false) %></td>
   <td>
