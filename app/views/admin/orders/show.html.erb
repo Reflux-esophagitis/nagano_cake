@@ -1,6 +1,6 @@
 <%= render "public/layouts/frame", type: :standard do %>
   <h3 class="marked-heading">注文履歴詳細</h3>
-  <div class="container my-4 mx-1">
+  <div class="container my-4">
     <%= render "shared/customers-detail-row", label: "購入者" do %>
       <%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %>
     <% end %>

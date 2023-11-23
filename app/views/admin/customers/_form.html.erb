@@ -1,60 +1,60 @@
 <%= render "layouts/errors", model: customer %>
 <%= form_with model: [:admin, customer], local: true do |f| %>
-  <div class="container">
-    <%= render "admin/customers/detail_row", label: "会員ID" do %>
+  <div class="container my-4">
+    <%= render "shared/customers-detail-row", label: "会員ID" do %>
       <%= customer.id %>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "氏名" do %>
+    <%= render "shared/customers-detail-row", label: "氏名" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :last_name, class: "form-control" %>
         </div>
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :first_name, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "フリガナ" do %>
+    <%= render "shared/customers-detail-row", label: "フリガナ" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :last_name_kana, class: "form-control" %>
         </div>
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :first_name_kana, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "郵便番号" do %>
+    <%= render "shared/customers-detail-row", label: "郵便番号" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :zip_code, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "住所" do %>
+    <%= render "shared/customers-detail-row", label: "住所" do %>
       <div class="form-row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-10 col-lg-8">
           <%= f.text_field :address, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "電話番号" do %>
+    <%= render "shared/customers-detail-row", label: "電話番号" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :telephone_number, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "メールアドレス" do %>
+    <%= render "shared/customers-detail-row", label: "メールアドレス" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-5 col-lg-4">
           <%= f.text_field :email, class: "form-control" %>
         </div>
       </div>
     <% end %>
-    <%= render "admin/customers/detail_row", label: "会員ステータス" do %>
+    <%= render "shared/customers-detail-row", label: "会員ステータス" do %>
       <div class="form-row">
-        <div class="col-6 col-md-4 custom-control custom-radio">
+        <div class="col-6 col-md-5 col-lg-4 custom-control custom-radio">
           <div class="custom-control custom-radio custom-control-inline">
             <%= f.radio_button :is_active, true, class: "custom-control-input" %>
             <%= f.label :is_active_true, "有効", class: "custom-control-label" %>
