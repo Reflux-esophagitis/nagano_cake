@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_admin!, if: :admin_area?
+
 
   private
   def after_sign_in_path_for(resource)
@@ -18,6 +20,18 @@ class ApplicationController < ActionController::Base
     when :customer
       root_path
     end
+  end
+
+  # リダイレクト先をログイン画面からルートパスに変更
+  def authenticate_admin!
+    unless current_admin
+      redirect_to root_path
+    end
+  end
+
+  # sign_inページ以外のadminが含まれるurlにリクエストする場合 TRUE
+  def admin_area?
+    request.fullpath.include?("/admin") && !request.fullpath.include?("admin/sign_in")
   end
 
   protected
