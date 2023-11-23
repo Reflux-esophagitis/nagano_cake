@@ -1,13 +1,10 @@
 <section class="container">
   <div class="d-flex justify-content-between">
     <div class="h3">ショッピングカート</div>
-    <div>
-      <%= link_to destroy_all_cart_items_path, method: :delete, remote: true, "data-confirm": "カートを空にしますか？", class: "btn btn-danger btn-sm" do %>
-        カートを空にする
-      <% end %>
+    <div id="empty-cart-button">
+      <%= render "empty-cart-button", disabled: @cart_items.empty? %>
     </div>
   </div>
-  <%= @test %>
   <% if @cart_items.size == 0 %>
     <p>
       カートは空です。
@@ -23,8 +20,8 @@
           <th></th>
         </tr>
       </thead>
-      <tbody id="cart_items_table">
-        <%= render "table", cart_item: @cart_item, cart_items: @cart_items %>
+      <tbody id="cart-items-table">
+        <%= render partial: "table-row", collection: @cart_items, as: :cart_item %>
       </tbody>
     </table>
   <% end %>
@@ -43,9 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="my-2 text-center">
-    <%= link_to new_order_path, class: "btn btn-success" do %>
-      情報入力に進む
-    <% end %>
+  <div id="order-button" class="my-2 text-center">
+    <%= render "order-button", disabled: @cart_items.empty? %>
   </div>
 </section>
