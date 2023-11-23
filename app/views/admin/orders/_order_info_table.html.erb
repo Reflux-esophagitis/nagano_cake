@@ -1,8 +1,8 @@
-<table class="table col-md-9">
-  <thead>
+<table class="table">
+  <thead class="thead-light">
     <tr>
       <th>商品名</th>
-      <th>単価(税込)</th>
+      <th>単価<wbr>(税込)</th>
       <th>数量</th>
       <th>小計</th>
       <th>製作ステータス</th>
@@ -17,8 +17,10 @@
         <td><%= to_jpy_format(order_detail.price, false) %></td>
         <td>
         <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
-          <%= f.select :status, detail_statuses, selected: order_detail.status_before_type_cast %>
-          <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+          <div class="form-row">
+            <%= f.select :status, detail_statuses, { selected: order_detail.status_before_type_cast }, class: "form-control form-control-sm col-12 col-md-8 my-1" %>
+            <%= f.submit "更新", class: "btn btn-sm btn-success col-6 offset-md-1 col-md-3 my-1" %>
+          </div>
         <% end %>
         </td>
       </tr>
