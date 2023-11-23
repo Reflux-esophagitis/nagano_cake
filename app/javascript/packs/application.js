@@ -15,7 +15,7 @@ import "vegas"
 import "vegas/dist/vegas.min.css"
 
 import "../stylesheets/application"
-import "./main-visual"
+import "./main"
 
 Rails.start()
 Turbolinks.start()

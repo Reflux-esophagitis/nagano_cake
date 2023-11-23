@@ -1,6 +1,6 @@
-@use "../global/variables" as *;
+@use "sass:math";
 
-@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&display=swap");
+@use "../global/variables" as *;
 
 #main-visual {
   position: relative;
@@ -8,7 +8,7 @@
 }
 
 #mv-picture {
-  $aspect-ratio: 16 / 9;
+  $aspect-ratio: math.div(16, 9);
   $width-ratio: 0.8;
   $min-height: 256px;
   $height: calc((100vw * $width-ratio) / $aspect-ratio);
