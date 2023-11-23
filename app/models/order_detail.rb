@@ -1,4 +1,5 @@
 class OrderDetail < ApplicationRecord
+  include ItemAmountCalculations
 
   enum status: {
     not_producible: 0,
@@ -12,6 +13,5 @@ class OrderDetail < ApplicationRecord
 
   validates :price, presence: true
   validates :amount, presence: true
-  validates :status, presence: true, inclusion: {in: OrderDetail.statuses.keys}
-
+  validates :status, presence: true, inclusion: { in: statuses.keys }
 end
