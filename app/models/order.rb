@@ -12,6 +12,8 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details, dependent: :destroy
 
+  scope :with_details_and_items, -> { includes(order_details: :item) }
+
   validates :name, presence: true
   validates :zip_code, presence: true
   validates :address, presence: true

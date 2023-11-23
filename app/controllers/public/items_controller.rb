@@ -1,6 +1,6 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.page(params[:page])
+    @items = Item.page(params[:page]).with_attached_image
     @items_count = Item.count
     @genres = Genre.all
   end

@@ -9,6 +9,8 @@ class OrderDetail < ApplicationRecord
 
   belongs_to :item
   belongs_to :order
+  
+  scope :with_items_and_images, -> { includes(item: { image_attachment: :blob }) }
 
   validates :price, presence: true
   validates :amount, presence: true
