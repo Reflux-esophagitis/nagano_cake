@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :is_active, presence: true
 
   scope :active, -> { where(is_active: true) }
+  scope :with_genre, -> { includes(:genre) }
 
   # 税込単価の計算
   def taxed_price
