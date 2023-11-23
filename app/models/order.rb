@@ -12,7 +12,9 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details, dependent: :destroy
 
+  # 商品詳細と商品データを事前に読み込む
   scope :with_details_and_items, -> { includes(order_details: :item) }
+  # 顧客データと商品詳細、商品合計数を事前読み込み
   scope :with_details_amount_and_customer, -> {
     joins(:order_details)
     .select('orders.*, SUM(order_details.amount) as total_amount')

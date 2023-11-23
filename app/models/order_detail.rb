@@ -9,7 +9,9 @@ class OrderDetail < ApplicationRecord
 
   belongs_to :item
   belongs_to :order
-  
+
+  # 商品データと画像を事前に読み込む
+  # (cart_item)と重複しているが一旦、別々に作成
   scope :with_items_and_images, -> { includes(item: { image_attachment: :blob }) }
 
   validates :price, presence: true
