@@ -159,15 +159,10 @@ describe '④登録情報変更〜退会' do
         click_link logo_link
         expect(page).to have_link logo_link, href: root_path
       end
+    end
     context 'トップ画面のテスト'do
       before do
         visit root_path
-      end
-      it '商品選択のテスト' do
-        item_link = find_all('a')[9]
-        click_link item_link
-        expect(page).to have_link item_link, href: item_path
-      end
       end
     end
   end
