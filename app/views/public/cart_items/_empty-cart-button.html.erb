@@ -1,0 +1,9 @@
+<%= link_to(
+  destroy_all_cart_items_path,
+  method: :delete,
+  remote: true,
+  "data-confirm": "カートを空にしますか？",
+  class: "btn btn-danger btn-sm #{"disabled" if disabled }"
+) do %>
+  カートを空にする
+<% end %>

@@ -16,7 +16,7 @@
         <%= f.hidden_field :item_id, value: item.id %>
         <div class="form-group d-flex align-items-center">
           <div>
-            <%= f.select :amount, SELECTABLE_AMOUNT_RANGE, {selected: cart_item.amount}, class: "form-control" %>
+            <%= f.select :amount, amount_range(cart_item.amount), {selected: cart_item.amount}, class: "form-control" %>
           </div>
           <%= f.button type: "submit", remote: true, class: "btn btn-success mx-2" do %>
             変更
