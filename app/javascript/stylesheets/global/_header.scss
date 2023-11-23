@@ -27,6 +27,7 @@
   #navbarSupportedContent {
     position: absolute;
     width: 12rem;
+    top: 100%;
     right: 0px;
     margin-top: 1rem;
     padding: 1rem;
@@ -39,5 +40,44 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 0.5rem;
+  }
+}
+
+.navigation-menu-item {
+  display: contents;
+  margin: 0 0.5rem;
+}
+
+.navigation-menu-button {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  color: $navigation-menu-color;
+  text-decoration: none;
+  transition: color 240ms ease-out;
+
+  &:hover {
+    color: lighten($navigation-menu-color, 16%);
+    text-decoration: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    border-radius: 0px;
+    // text-underline-offset: 1px;
+    background-color: $navigation-menu-color;
+    transition: transform 120ms ease-out;
+    transform-origin: right;
+    transform: scaleX(0);
+  }
+
+  &:hover::before {
+    transform-origin: left;
+    transform: scaleX(1)
   }
 }
