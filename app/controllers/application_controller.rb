@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
         :first_name,
         :last_name_kana,
         :first_name_kana,
-        :email, :zip_code,
+        :email,
+        :zip_code,
         :address,
         :telephone_number,
         :is_active
