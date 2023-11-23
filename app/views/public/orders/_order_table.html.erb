@@ -8,7 +8,11 @@
     <%= order.name %>
   </td>
   <td class="align-middle">
-    <%= order_items_name(order) %>
+    <ul class="list-unstyled">
+    <% order.order_details.each do |detail| %>
+      <li><%= detail.item.name %></li>
+    <% end %>
+    </ul>
   </td>
   <td class="align-middle">
     <%= to_jpy_format(order.total_price, true) %>

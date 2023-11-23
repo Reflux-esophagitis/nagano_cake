@@ -1,9 +1,7 @@
-<div class="container">
-  <div class="row">
-    <h4>注文履歴一覧</h4>
-  </div>
-  <table class="mt-5 table table-bordered">
-    <thead>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">注文履歴一覧</h3>
+  <table class="table table-bordered my-4">
+    <thead class="thead-light">
       <tr>
         <th>注文日</th>
         <th>配送先</th>
@@ -15,7 +13,6 @@
     </thead>
     <tbody>
       <%= render partial: "order_table", collection: @orders, as: "order" %>
-
     </tbody>
   </table>
-</div>
+<% end %>
