@@ -3,8 +3,16 @@ class Admin::SearchesController < ApplicationController
 
   def search
     @word = params[:word]
-    search_items
-    search_customer
+    if params[:category] == "genre"
+      # ジャンル検索の場合は顧客側と同様のparams[:category]を使用
+      @category = params[:category]
+      @search_results = Item.looks_genre(@word)
+    else
+      # フォームからの検索はセレクトボックスからのparams[:admin_category]を使用
+      # hidden_fieldにてparams[:category]に"item"を渡しているため
+      @category = params[:admin_category]
+      serch_selected_category
+    end
   end
 
   private
@@ -12,18 +20,17 @@ class Admin::SearchesController < ApplicationController
       redirect_to root_path unless admin_signed_in?
     end
 
-    def search_items
-      # 商品名検索
-      @search_name_items = Item.where("name LIKE?", "%#{@word}%")
-      # 商品ジャンル検索
-      @search_genre_items = Item.includes(:genre).where(genres: { name: @word }).references(:genre)
-    end
+    def serch_selected_category
+      #検索フォームに入力がない場合、元のページにリダイレクト
+      redirect_to request.referer, alert: "検索フォームに文字を入力してください" if @word.empty?
 
-    def search_customer
-      # 顧客名検索
-      @search_name_customers = Customer.where(
-        "first_name LIKE ? OR last_name LIKE ?", "%#{@word}%", "%#{@word}%"
-        )
+      if @category == "item"
+        # 商品名検索
+        @search_results = Item.looks_name(@word)
+      elsif @category == "customer"
+        # 顧客名検索
+        @search_results = Customer.looks_name(@word)
+      end
     end
 
 end
