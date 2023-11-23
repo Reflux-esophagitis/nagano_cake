@@ -1,16 +1,16 @@
 <tr>
   <td class="align-middle">
-    <%= format_date(order.created_at) %>
+    <span class="d-inline-block text-nowrap"><%= format_date(order.created_at) %>
   </td>
-  <td class="align-middle">
-    〒<%= order.zip_code%><br>
-    <%= order.address %><br>
-    <%= order.name %>
+  <td class="align-middle" style="min-width: 16rem;">
+    <div>〒<%= order.zip_code %></div>
+    <div><%= order.address %></div>
+    <div><%= order.name %></div>
   </td>
   <td class="align-middle">
     <ul class="list-unstyled">
     <% order.order_details.each do |detail| %>
-      <li><%= detail.item.name %></li>
+      <li class="text-nowrap"><%= detail.item.name %></li>
     <% end %>
     </ul>
   </td>
@@ -18,11 +18,11 @@
     <%= to_jpy_format(order.total_price, true) %>
   </td>
   <td class="align-middle">
-    <%= order.status_i18n %>
+    <span class="d-inline-block text-nowrap"><%= order.status_i18n %></span>
   </td>
   <td class="align-middle">
-    <%= link_to order_path(order), class: "btn btn-sm btn-primary" do %>
-    表示する
+    <%= link_to order_path(order), class: "btn btn-sm btn-primary text-nowrap" do %>
+      表示する
     <% end %>
   </td>
 </tr>

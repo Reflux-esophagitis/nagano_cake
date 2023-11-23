@@ -1,18 +1,20 @@
 <%= render "public/layouts/frame", type: :standard do %>
   <h3 class="marked-heading">注文履歴一覧</h3>
-  <table class="table table-bordered my-4">
-    <thead class="thead-light">
-      <tr>
-        <th>注文日</th>
-        <th>配送先</th>
-        <th>注文商品</th>
-        <th>支払金額</th>
-        <th>ステータス</th>
-        <th>注文詳細</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "order_table", collection: @orders, as: "order" %>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-bordered my-4">
+      <thead class="thead-light">
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "order_table", collection: @orders, as: "order" %>
+      </tbody>
+    </table>
+  </div>
 <% end %>
