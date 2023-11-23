@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'マイページのテスト' do
+describe '④登録情報変更〜退会' do
   let(:customer) { create(:customer) }
   before do
     visit new_customer_session_path
@@ -9,7 +9,7 @@ describe 'マイページのテスト' do
     click_button 'ログイン'
     visit mypage_customers_path
   end
-  context '表示の確認' do
+  context 'マイページの表示確認' do
     it '会員情報が画面に表示されていること' do
       expect(page).to have_content customer.last_name
       expect(page).to have_content customer.first_name
@@ -34,12 +34,12 @@ describe 'マイページのテスト' do
   #     expect(order_link.native.inner_text).to match(order)
 		# end
   end
-  context 'リンクの遷移先の確認' do
+  context '1.リンクの遷移先の確認' do
     it 'Editの遷移先は編集画面か' do
       edit_link = find_all('a')[5].text
       expect(page).to have_link edit_link, href: mypage_edit_customers_path
     end
-    it '配送先リンクの遷移先は配送先一覧画面か' do
+    it '4.配送先リンクの遷移先は配送先一覧画面か' do
       addresses_link = find_all('a')[6].text
       expect(page).to have_link addresses_link, href: addresses_path
 		end
@@ -64,7 +64,7 @@ describe 'マイページのテスト' do
         expect(page).to have_field 'customer[email]', with: customer.email
       end
       it '保存ボタンが表示される' do
-        expect(page).to have_button '編集内容を保存する'
+        expect(page).to have_button '編集内容を保存'
       end
     end
     context 'リンクの遷移先の確認' do
@@ -91,7 +91,7 @@ describe 'マイページのテスト' do
         fill_in 'customer[address]', with: random_address
         fill_in 'customer[telephone_number]', with: random_telephone_number
         fill_in 'customer[email]', with: random_email
-        click_button '編集内容を保存する'
+        click_button '編集内容を保存'
         expect(page).to have_content '更新しました。'
       end
       it '更新に失敗しエラーメッセージが表示されるか' do
@@ -103,10 +103,10 @@ describe 'マイページのテスト' do
         fill_in 'customer[address]', with: ""
         fill_in 'customer[telephone_number]', with: ""
         fill_in 'customer[email]', with: ""
-        click_button '編集内容を保存する'
-        expect(page).to have_content '入力してください。'
+        click_button '編集内容を保存'
+        expect(page).to have_content '入力'
       end
-      it '更新後のリダイレクト先は正しいか' do
+      it '2.更新後のリダイレクト先は正しいか' do
         fill_in 'customer[last_name]', with: random_last_name
         fill_in 'customer[first_name]', with: random_first_name
         fill_in 'customer[last_name_kana]', with: random_last_name_kana
@@ -115,8 +115,59 @@ describe 'マイページのテスト' do
         fill_in 'customer[address]', with: random_address
         fill_in 'customer[telephone_number]', with: random_telephone_number
         fill_in 'customer[email]', with: random_email
-        click_button '編集内容を保存する'
+        click_button '編集内容を保存'
         expect(page).to have_current_path mypage_customers_path
+      end
+      it '3.編集後の会員情報が表示されている' do
+        fill_in 'customer[last_name]', with: random_last_name
+        fill_in 'customer[first_name]', with: random_first_name
+        fill_in 'customer[last_name_kana]', with: random_last_name_kana
+        fill_in 'customer[first_name_kana]', with: random_first_name_kana
+        fill_in 'customer[zip_code]', with: random_zip_code
+        fill_in 'customer[address]', with: random_address
+        fill_in 'customer[telephone_number]', with: random_telephone_number
+        fill_in 'customer[email]', with: random_email
+        click_button '編集内容を保存'
+        expect(page).to have_content random_last_name
+        expect(page).to have_content random_first_name
+        expect(page).to have_content random_last_name_kana
+        expect(page).to have_content random_first_name_kana
+        expect(page).to have_content random_zip_code
+        expect(page).to have_content random_address
+        expect(page).to have_content random_telephone_number
+        expect(page).to have_content random_email
+      end
+    end
+    context '配送先の登録が行えるか' do
+      before do
+        visit addresses_path
+      end
+      random_name = Faker::Lorem.characters(number: 10)
+      random_zip_code = rand(100_000_0..999_999_9)
+      random_address = Faker::Address.full_address
+      it '5/6.配送先登録のテスト' do
+        fill_in 'address[name]', with: random_name
+        fill_in 'address[zip_code]', with: random_zip_code
+        fill_in 'address[address]', with: random_address
+        click_button '新規登録'
+        expect(page).to have_content random_name
+        expect(page).to have_content random_zip_code
+        expect(page).to have_content random_address
+      end
+      it '7.配送先一覧画面ヘッダーのテスト' do
+        logo_link = find_all('a')[0].text
+        click_link logo_link
+        expect(page).to have_link logo_link, href: root_path
+      end
+    context 'トップ画面のテスト'do
+      before do
+        visit root_path
+      end
+      it '商品選択のテスト' do
+        item_link = find_all('a')[9]
+        click_link item_link
+        expect(page).to have_link item_link, href: item_path
+      end
       end
     end
   end
