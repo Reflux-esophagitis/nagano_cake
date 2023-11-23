@@ -4,7 +4,19 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <%= render "order_item_table", order_items: @order_items %>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "order_items_table_row", collection: @cart_items ,as: :calculable_item %>
+        </tbody>
+      </table>
     </div>
     <div class="col-md-4 offset-1">
       <%= render "order_price_table", order: @order %>

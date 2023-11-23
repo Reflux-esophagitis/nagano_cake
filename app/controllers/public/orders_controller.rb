@@ -7,9 +7,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items
     @order = current_customer.orders.new({
-      total_price: CartItem.total_price(@order_items),
+      total_price: CartItem.total_price(@cart_items),
       payment_method: params[:order][:payment_method].to_i,
       postage: POSTAGE
     })
@@ -32,7 +32,7 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_items = @order.order_details
+    @order_details = @order.order_details
   end
 
   private

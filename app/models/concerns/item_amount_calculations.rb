@@ -19,9 +19,9 @@ module ItemAmountCalculations
     # `sum`メソッドはその配列の要素（各小計）を合計します。
     #
     # `&:subtotal`はRubyのシンタックスシュガーで、以下のコードと同じです。
-    # `items.map { |item| item.subtotal }.sum`
-    def total_price(items)
-      items.map(&:subtotal).sum
+    # `calculable_items.map { |item| item.subtotal }.sum`
+    def total_price(calculable_items)
+      calculable_items.map(&:subtotal).sum
     end
   end
 end

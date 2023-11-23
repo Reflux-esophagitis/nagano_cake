@@ -1,0 +1,14 @@
+<%
+  item = calculable_item.item
+  amount = calculable_item.amount
+  taxed_price = item.taxed_price
+%>
+<tr>
+  <td>
+    <%= image_tag item.image, size: "48x48" %>
+    <span class="mx-2"><%= item.name %></span>
+  </td>
+  <td><%= to_jpy_format(taxed_price, false) %></td>
+  <td><%= amount %></td>
+  <td><%= to_jpy_format(calculable_item.subtotal, false) %></td>
+</tr>
