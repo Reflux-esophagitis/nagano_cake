@@ -1,22 +1,39 @@
-<div class="container">
-  <div class="row">
-    <h3 class="offset-2">注文情報確認</h3>
-  </div>
-  <div class="row">
-    <div class="col-md-7">
-      <%= render "order_item_table", order_items: @order_items %>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">注文情報確認</h3>
+  <div class="row my-4">
+    <div class="col-lg-7">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "order_items_table_row", collection: @cart_items, as: :calculable_item %>
+        </tbody>
+      </table>
     </div>
-    <div class="col-md-4 offset-1">
+    <div class="col-8 offset-lg-1 col-lg-4">
       <%= render "order_price_table", order: @order %>
     </div>
   </div>
-  <div class="row p-3">
-    <h4 class="mr-3">支払方法</h4><p><%= @order.payment_method_i18n %></p>
+  <div class="row my-4">
+    <div class="col-4 col-lg-2 h4 font-weight-bold">支払方法</div>
+    <div class="col-8 col-lg-4">
+      <%= @order.payment_method_i18n %>
+    </div>
   </div>
-  <div class="row p-3">
-    <h4 class="mr-3">お届け先</h4><%= @order.full_address %><br>
-    <%= @order.name %>
+  <div class="row my-4">
+     <div class="col-4 col-lg-2 h4 font-weight-bold">お届け先</div>
+    <div class="col-8 col-lg-4">
+      <div><%= @order.full_address %></div>
+      <div><%= @order.name %></div>
+    </div>
   </div>
+
   <div class="text-center">
     <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
       <%= f.hidden_field :customer_id, value: @order.customer_id%>
@@ -29,4 +46,4 @@
       <%= f.submit "注文を確定する", class: "btn btn-success" %>
     <% end %>
   </div>
-</div>
+<% end %>

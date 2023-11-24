@@ -1,22 +1,24 @@
 <table class="table table-bordered">
-  <tr>
-    <th class="align-middle">注文日</th>
-    <td class="align-middle"><%= format_date(order.created_at) %></td>
-  </tr>
-  <tr>
-    <th class="align-middle">配送先</th>
-    <td class="align-middle">
-      〒<%= order.zip_code %><br>
-      <%= order.address %><br>
-      <%= order.name %>
-    </td>
-  </tr>
-  <tr>
-    <th class="align-middle">支払方法</th>
-    <td class="align-middle"><%= order.payment_method_i18n %></td>
-  </tr>
-  <tr>
-    <th class="align-middle">ステータス</th>
-    <td class="align-middle"><%= order.status_i18n %></td>
-  </tr>
+  <tbody class="thead-light">
+    <tr>
+      <th class="align-middle" scope="row">注文日</th>
+      <td class="align-middle"><%= format_date(order.created_at) %></td>
+    </tr>
+    <tr>
+      <th class="align-middle" scope="row">配送先</th>
+      <td class="align-middle">
+        〒<%= order.zip_code %><br>
+        <%= order.address %><br>
+        <%= order.name %>
+      </td>
+    </tr>
+    <tr>
+      <th class="align-middle" scope="row">支払方法</th>
+      <td class="align-middle"><%= order.payment_method_i18n %></td>
+    </tr>
+    <tr>
+      <th class="align-middle" scope="row">ステータス</th>
+      <td class="align-middle"><%= order.status_i18n %></td>
+    </tr>
+  </tbody>
 </table>

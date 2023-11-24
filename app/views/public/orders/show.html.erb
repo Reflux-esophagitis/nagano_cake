@@ -1,21 +1,33 @@
-<div class="container">
-  <div class="row">
-    <h4>注文履歴詳細</h4>
-  </div>
-  <div class="row">
-    <div class="col-md-7">
-      <p><strong>注文情報</strong></p>
-      <%= render "order_info_table", order: @order %>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">注文履歴詳細</h3>
+  <div class="container my-4">
+    <div class="row my-3">
+      <div class="col-lg-9">
+        <div class="font-weight-bold h5 mb-3 marked-heading">注文情報</div>
+        <%= render "order_info_table", order: @order %>
+      </div>
+      <div class="col-7 col-lg-3">
+        <div class="font-weight-bold h5 mb-3 marked-heading">請求情報</div>
+        <%= render "order_price_table", order: @order %>
+      </div>
     </div>
-    <div class="col-md-3">
-      <p><strong>請求情報</strong></p>
-      <%= render "order_price_table", order: @order %>
+    <div class="row my-3">
+      <div class="col-lg-10">
+        <div class="font-weight-bold h5 mb-3 marked-heading">注文内容</div>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>商品名</th>
+              <th>単価(税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render partial: "order_items_table_row", collection: @order_details, as: :calculable_item %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-9">
-      <p><strong>注文内容</strong></p>
-      <%= render "order_item_table", order_items: @order_items %>
-    </div>
-  </div>
-</div>
+<% end %>
