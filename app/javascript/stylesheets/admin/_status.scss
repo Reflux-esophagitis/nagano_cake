@@ -1,0 +1,9 @@
+@use "../global/variables" as *;
+
+.status-active {
+  color: $status-color-active;
+}
+
+.status-inactive {
+  color: $status-color-inactive;
+}

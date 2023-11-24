@@ -1,12 +1,16 @@
-<h1>Admin::Items#index</h1>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h2>商品一覧</h2>
-       <!--ボタンを変更の可能性につきリンクに新規投稿用と記載-->
-      <%= link_to new_admin_item_path do %>新規登録用<% end %>
-      <%= render "table", items: @items %>
+<%= render "public/layouts/frame", type: :standard do %>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h3 class="marked-heading">商品一覧</h3>
+    </div>
+    <%= link_to new_admin_item_path, class: "btn btn-light btn-lg rounded-circle border shadow-sm mx-3" do %>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
   </div>
-</div>
-
-
+  <div class="my-4">
+    <%= render "table", items: @items %>
+    <div class="d-flex justify-content-center">
+      <%= paginate @items %>
+    </div>
+  </div>
+<% end %>

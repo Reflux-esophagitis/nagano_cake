@@ -1,26 +1,24 @@
-      <table class="table">
-        <thead>
-          <tr>
-            <th>商品ID</th>
-            <th>商品名</th>
-            <th>税抜価格</th>
-            <th>ジャンル</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% items.each do |item| %>
-          <tr>
-            <td><%= item.id %></td>
-            <td><%= link_to admin_item_path(item) do %><%= item.name %><% end %></td>
-            <td><%= item.non_taxed_price %></td>
-            <td><%= item.genre.name %></td>
-            <td>
-              <span>
-                <%= item.is_active ? "販売中" : "販売停止中" %>
-              </span>
-            </td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td><%= link_to admin_item_path(item) do %><%= item.name %><% end %></td>
+      <td><%= item.non_taxed_price %></td>
+      <td><%= item.genre.name %></td>
+      <td>
+        <%= render "admin/items/status", is_active: item.is_active %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
