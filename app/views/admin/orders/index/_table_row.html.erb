@@ -7,6 +7,6 @@
   <% if show_customer %>
     <td><%= order.customer.full_name %></td>
   <% end %>
-  <td><%= order.order_details.sum(:amount) %></td>
+  <td><%= order.total_amount %></td>
   <td><%= order.status_i18n %></td>
 </tr>

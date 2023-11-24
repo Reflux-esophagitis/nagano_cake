@@ -203,12 +203,12 @@ ja:
       status:
         awaiting_payment: "入金待ち"
         payment_confirmed: "入金確認"
-        in_production: "制作中"
+        in_production: "製作中"
         preparing_for_shipment: "発送準備中"
         shipped: "発送済み"
     order_detail:
       status:
-        not_producible: "製造不可能"
-        awaiting_production: "生産待ち"
-        in_production: "生産中"
-        production_completed: "生産完了"
+        not_producible: "着手不可"
+        awaiting_production: "製作待ち"
+        in_production: "製作中"
+        production_completed: "製作完了"

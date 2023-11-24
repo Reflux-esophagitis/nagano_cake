@@ -1,0 +1,38 @@
+#about-image-container {
+  position: relative;
+}
+
+#about-image {
+  max-width: 100%;
+  width: 640px;
+  height: auto;
+  margin: 2rem 0;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+
+  // 画像ソースが空のときは、画像と隣にあるロゴを非表示にする
+  &[src=""], &[src=""] + #about-logo {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  // 画像ソースが空でなくなったら、フェードインアニメーションで画像を表示する
+  &:not([src=""]) {
+    animation: fadeIn 240ms ease-in 0s 1 normal;
+  }
+}
+
+#about-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 360px;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: soft-light;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}

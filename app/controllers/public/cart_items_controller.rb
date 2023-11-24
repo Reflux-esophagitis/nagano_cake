@@ -75,6 +75,6 @@ class Public::CartItemsController < ApplicationController
   end
 
   def set_cart_items
-    @cart_items = current_customer.cart_items
+    @cart_items = current_customer.cart_items.with_items_and_images
   end
 end

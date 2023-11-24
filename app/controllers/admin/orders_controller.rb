@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_details = @order.order_details.with_items_and_images
     @statuses = Order.statuses.map do |key, value|
       [I18n.t("enums.order.status.#{key}"), value]
     end
@@ -13,7 +13,10 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     new_status = params[:order][:status].to_i
-    if new_status == 4
+    if new_status == 1
+      order.order_details.update_all(status: 1)
+      order.update(status: new_status)
+    elsif new_status == 4
       if order.complete_all_details?
         order.update(status: new_status)
         flash[:notice] = "注文ステータスを更新しました。"
