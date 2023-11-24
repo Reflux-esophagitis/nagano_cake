@@ -16,6 +16,7 @@ class Customer < ApplicationRecord
   validates :address, presence: true
   validates :telephone_number, presence: true
   validates :email, presence: true
+  validates :is_active, inclusion: [true, false]
 
   def full_name
     self.last_name + self.first_name
