@@ -20,4 +20,10 @@ module Admin::SearchesHelper
     end
   end
 
+  def search_target
+    {
+      "商品名" => "item",
+      "顧客名" => "customer"
+    }
+  end
 end

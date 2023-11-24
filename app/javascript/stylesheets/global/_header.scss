@@ -27,6 +27,7 @@
   #navbarSupportedContent {
     position: absolute;
     width: 12rem;
+    top: 100%;
     right: 0px;
     margin-top: 1rem;
     padding: 1rem;
@@ -39,5 +40,32 @@
     display: flex;
     flex-flow: column nowrap;
     gap: 0.5rem;
+  }
+}
+
+.navigation-menu-item {
+  display: contents;
+  margin: 0 0.5rem;
+}
+
+.navigation-menu-button {
+  position: relative;
+  margin: 0 0.25rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  color: $navigation-menu-color;
+  text-decoration: none;
+  transition: 120ms ease-out;
+  transition-proparty: color background-color;
+
+  &:hover {
+    color: lighten($navigation-menu-color, 16%);
+    background-color: rgb(lighten($navigation-menu-color, 64%), 0.48);
+    text-decoration: none;
+  }
+
+  &:active {
+    background-color: rgb(lighten($navigation-menu-color, 56%), 0.48);
   }
 }

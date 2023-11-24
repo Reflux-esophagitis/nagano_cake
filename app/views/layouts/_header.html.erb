@@ -12,7 +12,7 @@
             ようこそ、<%= current_customer.last_name %>さん！
           <% end %>
         </div>
-        <div id="nav-menu" class="text-right h-100">
+        <div id="nav-menu" class="d-flex justify-content-center align-items-center">
           <div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -27,14 +27,18 @@
       </div>
       <div id="search-form" class="ml-auto">
         <%= form_with url: search_form_action, method: :get, class: "d-flex justify-content-center align-items-center" do |f| %>
-          <% if admin_signed_in? %>
-            <%= f.select :admin_category, { "商品名" => "item","顧客名" => "customer" },{},{ class: "form-select mr-2" } %>
-          <% end %>
-          <%= f.text_field :word, class: "form-control form-control-sm" %>
           <%= f.hidden_field :category, value: "item" %>
-          <%= button_tag type: "submit", class: "ml-2 btn btn-sm" do %>
-           <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
-          <% end %>
+          <div class="input-group input-group-sm">
+            <% if admin_signed_in? %>
+              <%= f.select :admin_category, search_target, {}, class: "input-group-prepend form-control custom-select w-auto" %>
+            <% end %>
+            <%= f.text_field :word, class: "form-control form-control-sm w-auto", placeholder: "Search" %>
+            <div class="input-group-append">
+              <%= button_tag type: "submit", class: "input-group-text btn btn-outline-secondary" do %>
+                <i class="fa-solid fa-magnifying-glass fa-flip-horizontal"></i>
+              <% end %>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>
