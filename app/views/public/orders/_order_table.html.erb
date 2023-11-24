@@ -8,7 +8,7 @@
     <%= order.name %>
   </td>
   <td class="align-middle">
-    <%= order_items_name(order) %>
+    <%= simple_format(order_items_name(order)) %>
   </td>
   <td class="align-middle">
     <%= to_jpy_format(order.total_price, true) %>
