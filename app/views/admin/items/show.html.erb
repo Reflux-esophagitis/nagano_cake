@@ -1,20 +1,51 @@
-<h1>Admin::Items#show</h1>
-<!--編集中-->
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <%= image_tag @item.image, size: "100x100" %>
-      <%= link_to admin_item_path(@item) do %><%= @item.name %><% end %>
-      <%= @item.introduction %>
-      <%= @item.non_taxed_price %>
-      <%= @item.is_active %>
-      <%= link_to edit_admin_item_path(@item) do %>編集<% end %>
-      <%= form_with model: @item do |f| %>
-        <%= f.radio_button :is_active, true %>
-        <%= f.label :is_active, "販売中", value: :true, class: "d-inline-block" %>
-        <%= f.radio_button :is_active, false %>
-        <%= f.label :is_active, "販売停止中", value: :false, class: "d-inline-block" %>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">商品詳細</h3>
+  <div class="row my-5">
+    <div class="col-lg-3 text-center">
+      <%= image_tag @item.image %>
+    </div>
+    <div class="col-lg-9">
+      <% row_class   = "row my-3" %>
+      <% l_col_class = "col-9 col-md-4 col-lg-3 font-weight-bold" %>
+      <% r_col_class = "col-12 col-lg-8 px-4 lead font-weight-normal" %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "商品名", class: l_col_class %>
+        <%= tag.div @item.name, class: r_col_class %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "商品説明", class: l_col_class %>
+        <%= tag.div @item.introduction, class: r_col_class %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "ジャンル", class: l_col_class %>
+        <%= tag.div @item.genre.name, class: r_col_class %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "商品説明", class: l_col_class %>
+        <%= tag.div @item.name, class: r_col_class %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "税込価格 (税抜価格)", class: l_col_class %>
+        <%= tag.div class: r_col_class do %>
+          <span class="text-nowrap"><%= to_jpy_format(@item.non_taxed_price, true) %></span>
+          <small class="text-nowrap"><%= "(#{ to_jpy_format(@item.taxed_price, true) })" %></small>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= tag.div "販売ステータス", class: l_col_class %>
+        <%= tag.div render("admin/items/status", is_active: @item.is_active), class: r_col_class %>
       <% end %>
     </div>
   </div>
-</div>
+  <div class="d-flex justify-content-center my-4">
+    <%= link_to edit_admin_item_path(@item), class: "btn btn-success" do %>
+      編集する
+    <% end %>
+  </div>
+<% end %>
