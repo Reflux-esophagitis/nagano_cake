@@ -1,15 +1,18 @@
 class Public::AddressesController < ApplicationController
   before_action :is_matching_address_customer, only: %i[edit update destroy]
+  before_action :set_address, only: %i[edit update destroy]
 
   def index
-    @addresses = current_customer.addresses
     @address = Address.new
+    @addresses = current_customer.addresses
   end
 
   def create
-    @address = current_customer.addresses.new(address_params)
+    @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
+
     if @address.save
-      redirect_to index
+      redirect_to addresses_path, notice: "新しい配送先を登録しました。"
     else
       @addresses = current_customer.addresses
       render :index
@@ -17,26 +20,31 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(params[:id])
   end
 
   def update
-     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to addresses_path
+      redirect_to addresses_path, notice: "配送先の内容を更新しました。"
     else
       render :edit
     end
   end
 
   def destroy
-    @address = Address.find(params[:id]).destroy
-    redirect_to addresses_path
+    if @address.destroy
+      redirect_to addresses_path, notice: "配送先を削除しました。"
+    else
+      render :index
+    end
   end
 
   private
     def address_params
       params.require(:address).permit(:zip_code, :address, :name)
+    end
+
+    def set_address
+      @address = Address.find(params[:id])
     end
 
     def is_matching_address_customer
