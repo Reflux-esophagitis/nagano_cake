@@ -1,8 +1,4 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4><%= @customer.full_name %>さんの会員情報編集</h4>
-      <%= render "form", customer: @customer %>
-    </div>
-  </div>
-</div>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading"><%= @customer.full_name %>さんの会員情報編集</h3>
+  <%= render "form", customer: @customer %>
+<% end %>

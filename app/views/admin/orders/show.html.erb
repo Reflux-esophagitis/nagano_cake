@@ -1,50 +1,45 @@
-<div class="container">
-  <div class="row">
-    <h5 class="offset-1 my-3">注文履歴詳細</h5>
-  </div>
-  <div class="row">
-    <p class="col-2"><strong>購入者</strong></p>
-    <p><%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %></p>
-  </div>
-  <div class="row">
-    <p class="col-2"><strong>注文日</strong></p>
-    <p><%= format_date(@order.created_at) %></p>
-  </div>
-  <div class="row">
-    <p class="col-2"><strong>配送先</strong></p>
-    <P>
-      <%= full_address(@order) %><br>
-      <%= @order.name %>
-    </P>
-  </div>
-  <div class="row">
-    <p class="col-2"><strong>支払方法</strong></p>
-    <p><%= @order.payment_method_i18n %></p>
-  </div>
-  <div class="row">
-    <p class="col-2"><strong>注文ステータス</strong></p>
-    <p>
-      <%= form_with model: @order, url: admin_order_path do |f| %>
-        <%= f.select :status, @statuses, selected: @order.status_before_type_cast %>
-        <%= f.submit "更新", class: "btn btn-sm btn-success ml-3" %>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">注文履歴詳細</h3>
+  <div class="container my-4">
+    <%= render "shared/customers-detail-row", label: "購入者" do %>
+      <%= link_to @order.customer.full_name, admin_customer_path(@order.customer) %>
+    <% end %>
+    <%= render "shared/customers-detail-row", label: "注文日" do %>
+      <%= format_date(@order.created_at) %>
+    <% end %>
+    <%= render "shared/customers-detail-row", label: "配送先" do %>
+      <div><%= full_address(@order) %></div>
+      <div><%= @order.name %></div>
+    <% end %>
+    <%= render "shared/customers-detail-row", label: "支払方法" do %>
+      <%= @order.payment_method_i18n %>
+    <% end %>
+    <%= render "shared/customers-detail-row", label: "注文ステータス" do %>
+      <%= form_with model: @order, url: admin_order_path, class: "row" do |f| %>
+        <div class="col col-md-6 col-lg-4 form-row">
+          <%= f.select :status, @statuses, { selected: @order.status_before_type_cast }, class: "form-control form-control-sm col-8" %>
+          <%= f.submit "更新", class: "btn btn-sm btn-success offset-1 col-3" %>
+        </div>
       <% end %>
-    </p>
+    <% end %>
   </div>
-  <div class="row">
-    <%= render "order_info_table", order_details: @order_details, detail_statuses: @detail_statuses %>
-    <div class="col">
-      <div>
-        <strong>商品合計</strong>
-        <%= to_jpy_format(@order.total_price, false) %>円
+  <div class="row my-4">
+    <div class="col-12 col-lg-9">
+      <%= render "order_info_table", order_details: @order_details, detail_statuses: @detail_statuses %>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 mt-auto">
+      <div class="row my-2">
+        <div class="col-6 font-weight-bold">商品合計</div>
+        <div class="col-2"><%= to_jpy_format(@order.total_price, true) %></div>
       </div>
-      <div>
-        <strong>送料</strong>
-        <%= to_jpy_format(@order.postage, false) %>円
+      <div class="row my-2">
+        <div class="col-6 font-weight-bold">送料</div>
+        <div class="col-2"><%= to_jpy_format(@order.postage, true) %></div>
       </div>
-      <div>
-        <strong>請求金額合計</strong>
-        <strong><%= to_jpy_format(@order.total_price + @order.postage, false) %>円</strong>
+      <div class="row my-2">
+        <div class="col-6 font-weight-bold">請求金額合計</div>
+        <div class="col-2 font-weight-bold"><%= to_jpy_format(@order.total_price + @order.postage, true) %></div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
