@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order_items = current_customer.cart_items.with_items_and_images
+    @cart_items = current_customer.cart_items.with_items_and_images
     @order = current_customer.orders.new({
       total_price: CartItem.total_price(@cart_items),
       payment_method: params[:order][:payment_method].to_i,
@@ -27,7 +27,11 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders.with_details_and_items
+    @orders = current_customer.orders
+                .with_details_and_items
+                .recent
+                .page(params[:page])
+                .per(8)
   end
 
   def show

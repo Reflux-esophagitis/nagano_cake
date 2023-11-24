@@ -13,8 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        <%= render partial: "order_table", collection: @orders, as: "order" %>
+        <%= render partial: "order_table", collection: @orders, as: :order %>
       </tbody>
     </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @orders %>
   </div>
 <% end %>
