@@ -6,7 +6,7 @@
     <div class="col-lg-9">
       <%= tag.div class: row_class do %>
         <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: label_class %>
-        <%= tag.div class: "col-6 col-lg-4 px-3" do %>
+        <%= tag.div class: "col-8 col-md-6 col-lg-4 px-3" do %>
           <%= f.text_field :zip_code, autofocus: true, class: "form-control", placeholder: t("placeholder.zip_code") %>
         <% end %>
       <% end %>
@@ -20,13 +20,13 @@
 
       <%= tag.div class: row_class do %>
         <%= f.label :name, "宛名", class: label_class %>
-        <%= tag.div class: "col-6 col-lg-4 px-3" do %>
+        <%= tag.div class: "col-8 col-md-6 col-lg-4 px-3" do %>
           <%= f.text_field :name, class: "form-control", placeholder: t("placeholder.full_name") %>
         <% end %>
       <% end %>
     </div>
     <div class="col-lg-3 mt-auto mb-3 d-flex justify-content-center">
-      <%= f.submit address_btn, class: "btn btn-success" %>
+      <%= f.submit btn_text, class: "btn btn-success" %>
     </div>
   <% end %>
 </div>

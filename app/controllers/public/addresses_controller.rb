@@ -8,6 +8,9 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
+    # 下記コードは保存失敗時に `ActionControler::UrlGenerationError` が発生します。
+    # @address = current_customer.addresses.new(address_params)
+    
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
 
