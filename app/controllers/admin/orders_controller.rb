@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_details = @order.order_details.with_items_and_images
     @statuses = Order.statuses.map do |key, value|
       [I18n.t("enums.order.status.#{key}"), value]
     end

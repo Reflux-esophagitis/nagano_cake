@@ -6,7 +6,7 @@ class Admin::SearchesController < ApplicationController
     if params[:category] == "genre"
       # ジャンル検索の場合は顧客側と同様のparams[:category]を使用
       @category = params[:category]
-      @search_results = Item.looks_genre(@word)
+      @search_results = Item.looks_genre(@word).with_genre
     else
       # フォームからの検索はセレクトボックスからのparams[:admin_category]を使用
       # hidden_fieldにてparams[:category]に"item"を渡しているため
@@ -26,7 +26,7 @@ class Admin::SearchesController < ApplicationController
 
       if @category == "item"
         # 商品名検索
-        @search_results = Item.looks_name(@word)
+        @search_results = Item.looks_name(@word).with_genre
       elsif @category == "customer"
         # 顧客名検索
         @search_results = Customer.looks_name(@word)
