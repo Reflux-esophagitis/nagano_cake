@@ -1,23 +1,19 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h4>会員一覧</h4>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th>会員ID</th>
-            <th>氏名</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render partial: "customers_table", collection: @customers, as: :customer %>
-        </tbody>
-      </table>
-      <div class="d-flex justify-content-center">
-        <%= paginate @customers %>
-      </div>
-    </div>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">会員一覧</h3>
+  <table class="table my-3">
+    <thead class="thead-light">
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "customers_table", collection: @customers, as: :customer %>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <%= paginate @customers %>
   </div>
-</div>
+<% end %>
