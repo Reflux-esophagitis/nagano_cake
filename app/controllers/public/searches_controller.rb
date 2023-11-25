@@ -3,7 +3,7 @@ class Public::SearchesController < ApplicationController
     @word = params[:word]
     @category = params[:category]
     search_items
-    @show_items = @search_items.page(params[:page]).with_attached_image
+    @show_items = @search_items.page(params[:page]).recent_active_items_with_images
     @search_items_count = @search_items.count
   end
 

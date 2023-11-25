@@ -2,7 +2,7 @@ class Public::HomesController < ApplicationController
   DISPLAY_NEW_ITEMS_COUNT = 4
 
   def top
-    @new_items = Item.active.order(created_at: :desc).limit(DISPLAY_NEW_ITEMS_COUNT).with_attached_image
+    @new_items = Item.limit(DISPLAY_NEW_ITEMS_COUNT).recent_active_items_with_images
     @genres = Genre.all
   end
 
