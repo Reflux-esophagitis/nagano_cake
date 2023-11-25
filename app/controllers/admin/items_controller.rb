@@ -14,7 +14,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       name = @item.name
-      redirect_to admin_item_path(@item), "新しい商品「#{name}」を追加しました。"
+      redirect_to admin_item_path(@item), notice: "新しい商品「#{name}」を追加しました。"
     else
       render :new
     end
