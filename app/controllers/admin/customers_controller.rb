@@ -13,7 +13,7 @@ class Admin::CustomersController < ApplicationController
   end
 
   def orders
-    @orders = @customer.orders.page(params[:page])
+    @orders = @customer.orders.page(params[:page]).with_details_amount_and_customer.recent
   end
 
   def update

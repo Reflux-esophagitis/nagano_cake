@@ -42,4 +42,7 @@ class Order < ApplicationRecord
     order_details.all? { |detail| detail.status_before_type_cast == 3 }
   end
 
+  def total_amount
+    order_details.sum(:amount)
+  end
 end

@@ -3,7 +3,7 @@ class Admin::ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update]
 
   def index
-    @items = Item.all.with_genre.page(params[:page])
+    @items = Item.page(params[:page]).recent_with_genre
   end
 
   def new
