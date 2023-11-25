@@ -44,6 +44,7 @@ ja:
         introduction: 商品説明
         non_taxed_price: 税抜価格
         is_active: 販売ステータス
+        genre: ジャンル
       order:
         name: 宛名
         zip_code: 郵便番号
