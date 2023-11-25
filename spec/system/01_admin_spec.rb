@@ -17,18 +17,23 @@ describe '①製作〜発送' do
     end
     # 現在編集中
     # context '5.商品新規登録画面のテスト' do
+    #   let(:genre) { create(:genre) }
+    #   before do
+    #     visit new_admin_item_path
+    #   end
     #   random_name = Faker::Lorem.characters(number: 10)
     #   rondom_introduction = Faker::Lorem.characters(number: 20)
     #   random_non_taxed_price = rand(100..900)
     #   it '商品新規登録と登録後の遷移テスト' do
-    #     expect(item.image).to be_attached
+    #     attach_file('item[image]', Rails.root.join('spec/images/no_image.jpg'))
     #     fill_in 'item[name]', with: random_name
     #     fill_in 'item[introduction]', with: rondom_introduction
-    #     fill_in 'genre[name]', with: 'ケーキ'
+    #     select genre.name, from: 'item[genre]'
     #     fill_in 'item[non_taxed_price]', with: random_non_taxed_price
+    #     expect { click_button '新規登録' }.to change(Item.all, :count).by(1)
     #     click_button '新規登録'
-    #     expect(current_path).to eq '/admin/items/' + item.id.to_s
-    #     expect(page).to have_css("img[src*='#{item.image}']")
+    #     expect(current_path).to eq '/admin/items/' + Item..last.id.to_s
+    #     expect(page).to have_css("img[src*='no_image.jpg']")
     #     expect(page).to have_content item.name
     #     expect(page).to have_content item.introduction
     #     expect(page).to have_content genre.name
