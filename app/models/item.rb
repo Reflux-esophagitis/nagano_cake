@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   # ジャンルデータを事前読み込み
   scope :with_genre, -> { includes(:genre) }
 
-  # 追加日時降順
+  # 日時が新しいものが先にくるようにする
   scope :recent, -> { order(created_at: :desc) }
 
   # 主に顧客側で使用
