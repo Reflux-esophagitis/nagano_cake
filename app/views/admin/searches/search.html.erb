@@ -1,28 +1,31 @@
-<div class="container">
-  <div class="row">
-    <h4>検索結果画面</h4>
-  </div>
-  <div class="row">
-    <h5>
+<%= render "public/layouts/frame", type: :standard do %>
+  <h3 class="marked-heading">検索結果画面</h3>
+  <div class="my-2">
+    <h5 class="marked-heading">
       <%= category_text_admin(@category) %>
-      <strong><%= @word %></strong>
+      <span class="h4 mx-1"><%= @word %></span>
       の検索結果
-      <%= counts_text(@search_results.count) %>
+      <small><%= counts_text(@search_results.count) %></small>
     </h5>
   </div>
+
   <% if @search_results.empty? %>
-  <div class="row">
-    <h5 class="col mt-5">検索結果はありません。</h5>
+  <div class="my-3 text-center">
+    <p class="my-5 font-weight-normal lead">
+      <%= category_text_admin(@category) %>
+      <span class="h4 mx-1"><%= @word %></span>
+      の検索結果が見つかりませんでした。<br>
+    </p>
   </div>
   <% else %>
-  <!--商品名検索、ジャンル検索の場合使用-->
+    <!--商品名検索、ジャンル検索の場合使用-->
     <% if check_search_category(@category) %>
-      <div class="row">
+      <div class="my-3">
         <%= render "admin/items/table", items: @search_results %>
       </div>
     <!--会員名が一致する場合表示(部分一致も含む)-->
     <% else %>
-      <div class="row">
+      <div class="my-3">
         <table class="table">
           <thead class="thead-light">
             <tr>
@@ -39,4 +42,4 @@
       </div>
     <% end %>
   <% end %>
-</div>
+<% end %>
