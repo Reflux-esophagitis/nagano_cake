@@ -2,6 +2,8 @@
 
 /* global $ */
 
+import bsCustomFileInput from "bs-custom-file-input";
+
 import baked_sweets from "../images/main-visual/baked_sweets.jpg";
 import fruit_tart from "../images/main-visual/fruit_tart.jpg";
 import patissier from "../images/main-visual/patissier.jpg";
@@ -45,4 +47,8 @@ $(document).on("turbolinks:load", () => {
       break;
     }
   }
+});
+
+$(() => {
+  bsCustomFileInput.init();
 });

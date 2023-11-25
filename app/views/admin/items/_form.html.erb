@@ -1,0 +1,69 @@
+<%= render "layouts/errors", model: @item %>
+<div class="row">
+  <%= form_with model: [:admin, @item], local: true, class: "col-12 col-lg-6 mx-auto" do |f| %>
+    <div class="container my-4">
+      <% row_class = "form-group row" %>
+      <% label_class = "col-4 font-weight-bold" %>
+      <% input_class = "col-8" %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :image, "商品画像", class: label_class %>
+        <%= tag.div class: input_class do %>
+          <div class="custom-file">
+            <%= f.file_field :image, accept: "image/*", class: "custom-file-input", id: "inputItemImage" %>
+            <%= f.label "ファイルを選択", class: "custom-file-label", for: "inputItemImage", "data-browse": "参照" %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :name, "商品名", class: label_class %>
+        <%= tag.div class: input_class do %>
+         <%= f.text_field :name, class: "form-control", placeholder: "商品名" %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :introduction, "商品説明", class: label_class %>
+        <%= tag.div class: input_class do %>
+          <%= f.text_area :introduction, class: "form-control", rows: 5, placeholder: "ここに説明文を記述します" %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :genre_id, "ジャンル", class: label_class %>
+        <%= tag.div class: input_class do %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "--選択してください--" }, class: "form-control" %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :non_taxed_price, "税抜価格", class: label_class %>
+        <%= tag.div class: input_class do %>
+          <div class="d-flex align-items-center">
+            <%= f.text_field :non_taxed_price, class: "form-control", placeholder: "1000" %><span class="ml-2">円</span>
+          </div>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :is_active, "販売ステータス", class: label_class %>
+        <%= tag.div class: input_class do %>
+          <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :is_active, true, class: "custom-control-input" %>
+            <%= f.label :is_active_true, "販売中", class: "custom-control-label" %>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :is_active, false, class: "custom-control-input" %>
+            <%= f.label :is_active_false, "販売停止中", class: "custom-control-label" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= f.button type: :submit, class: "btn btn-success" do %>
+        <%= btn_text %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
