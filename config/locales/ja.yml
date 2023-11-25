@@ -8,8 +8,23 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     models:
+      address: 宛先
+      admin: 管理者
+      cart_item: カート商品
       customer: 顧客
+      genre: ジャンル
+      item: 商品
+      order: 注文
+      order_detail: 注文詳細
     attributes:
+      address:
+        name: 宛名
+        zip_code: 郵便番号
+        address: 住所
+      admin:
+        email: メールアドレス
+      cart_item:
+        amount: 個数
       customer:
         email: メールアドレス
         password: パスワード
@@ -21,6 +36,26 @@ ja:
         zip_code: 郵便番号
         address: 住所
         telephone_number: 電話番号
+        is_active: 会員ステータス
+      genre:
+        name: ジャンル名
+      item:
+        name: 商品名
+        introduction: 商品説明
+        non_taxed_price: 税抜価格
+        is_active: 販売ステータス
+      order:
+        name: 宛名
+        zip_code: 郵便番号
+        address: 住所
+        payment_method: 支払い方法
+        status: 注文ステータス
+        total_price: 合計価格
+        postage: 送料
+      order_detail:
+        price: 税込単価
+        amount: 個数
+        status: 製作ステータス
   date:
     abbr_day_names:
     - 日
