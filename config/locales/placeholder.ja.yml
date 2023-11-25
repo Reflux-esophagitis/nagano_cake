@@ -1,0 +1,12 @@
+ja:
+  placeholder:
+    email: "sample@example.com"
+    first_name: 道子
+    first_name_kana: ミチコ
+    last_name: 令和
+    last_name_kana: レイワ
+    full_name: 令和道子
+    full_name_kana: レイワミチコ
+    zip_code: "0000000"
+    address: 東京都渋谷区代々木神園町0-0
+    telephone_number: "0000000000"

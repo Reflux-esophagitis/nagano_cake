@@ -1,15 +1,32 @@
-<%= form_with model: address do |f| %>
-  <div class="form-group row">
-    <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: "col-md-3"%>
-    <%= f.text_field :zip_code, autofocus: true, class: "col-md-2" %>
-  </div>
-  <div class="form-group row">
-    <%= f.label :address, "住所", class: "col-md-3" %>
-    <%= f.text_field :address, class: "col-md-5" %>
-  </div>
-  <div class="form-group row">
-    <%= f.label :name, "宛名", class: "col-md-3" %>
-    <%= f.text_field :name, class: "col-md-2" %>
-    <%= f.submit address_btn, class: "offset-3 btn btn-success" %>
-  </div>
-<% end %>
+<div class="my-4">
+  <%= render "layouts/errors", model: address %>
+  <%= form_with model: address, class: "row" do |f| %>
+    <% row_class = "form-group form-row" %>
+    <% label_class = "col-12 col-lg-4 font-weight-bold" %>
+    <div class="col-lg-9">
+      <%= tag.div class: row_class do %>
+        <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: label_class %>
+        <%= tag.div class: "col-8 col-md-6 col-lg-4 px-3" do %>
+          <%= f.text_field :zip_code, autofocus: true, class: "form-control", placeholder: t("placeholder.zip_code") %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :address, "住所", class: label_class %>
+        <%= tag.div class: "col-12 col-lg-8 px-3" do %>
+          <%= f.text_field :address, class: "form-control", placeholder: t("placeholder.address") %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div class: row_class do %>
+        <%= f.label :name, "宛名", class: label_class %>
+        <%= tag.div class: "col-8 col-md-6 col-lg-4 px-3" do %>
+          <%= f.text_field :name, class: "form-control", placeholder: t("placeholder.full_name") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-3 mt-auto mb-3 d-flex justify-content-center">
+      <%= f.submit btn_text, class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
