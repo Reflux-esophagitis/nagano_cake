@@ -2,7 +2,7 @@
 <%= form_with model: [:admin, genre], local: true do |f| %>
   <div class="form-row align-items-center">
     <%= f.label "ジャンル名", class: "col-3 m-0 font-weight-bold" %>
-    <%= f.text_field :name, placeholder: "ジャンル名", class: "col-5 form-control" %>
+    <%= f.text_field :name, placeholder: t("placeholder.genre_name"), class: "col-5 form-control" %>
     <div class="col-4 d-flex justify-content-end">
       <%= f.button type: :submit, class: "btn btn-success" do %>
         <%= btn_text %>

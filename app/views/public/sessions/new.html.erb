@@ -13,7 +13,7 @@
           <div id="login-form">
             <div class="field form-group">
               <%= f.label :email, "メールアドレス", class: "field-main-label" %>
-              <%= f.email_field :email, class: "field-input form-control", autofocus: true, autocomplete: "email" %>
+              <%= f.email_field :email, class: "field-input form-control", placeholder: t("placeholder.email"), autofocus: true, autocomplete: "email" %>
             </div>
 
             <div class="field form-group">

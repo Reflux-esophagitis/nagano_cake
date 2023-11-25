@@ -9,37 +9,37 @@
             <div class="field form-group">
               <%= f.label :last_name, "名前", class: "field-main-label" %>
               <%= f.label :last_name, "(姓)", class: "field-first-sub-label" %>
-              <%= f.text_field :last_name, class: "field-first-input form-control", autofocus: true %>
+              <%= f.text_field :last_name, class: "field-first-input form-control", placeholder: t("placeholder.last_name"), autofocus: true %>
               <%= f.label :first_name, "(名)", class: "field-second-sub-label" %>
-              <%= f.text_field :first_name, class: "field-second-input form-control" %>
+              <%= f.text_field :first_name, class: "field-second-input form-control", placeholder: t("placeholder.first_name") %>
             </div>
 
             <div class="field form-group">
               <%= f.label :last_name_kana, "フリガナ", class: "field-main-label" %>
               <%= f.label :last_name_kana, "(セイ)", class: "field-first-sub-label" %>
-              <%= f.text_field :last_name_kana, class: "field-first-input form-control" %>
+              <%= f.text_field :last_name_kana, class: "field-first-input form-control", placeholder: t("placeholder.last_name_kana") %>
               <%= f.label :first_name_kana, "(メイ)", class: "field-second-sub-label" %>
-              <%= f.text_field :first_name_kana, class: "field-second-input form-control" %>
+              <%= f.text_field :first_name_kana, class: "field-second-input form-control", placeholder: t("placeholder.first_name_kana") %>
             </div>
 
             <div class="field form-group">
               <%= f.label :email, "メールアドレス", class: "field-main-label" %>
-              <%= f.email_field :email, class: "field-first-input form-control", autocomplete: "email" %>
+              <%= f.email_field :email, class: "field-first-input form-control", placeholder: t("placeholder.email"), autocomplete: "email" %>
             </div>
 
             <div class="field form-group">
               <%= f.label :zip_code, "郵便番号(ハイフンなし)", class: "field-main-label" %>
-              <%= f.text_field :zip_code, class: "field-first-input form-control" %>
+              <%= f.text_field :zip_code, class: "field-first-input form-control", placeholder: t("placeholder.zip_code") %>
             </div>
 
             <div class="field form-group">
               <%= f.label :address, "住所", class: "field-main-label" %>
-              <%= f.text_field :address, class: "field-full-width-input form-control" %>
+              <%= f.text_field :address, class: "field-full-width-input form-control", placeholder: t("placeholder.address") %>
             </div>
 
             <div class="field form-group">
               <%= f.label :telephone_number, "電話番号(ハイフンなし)", class: "field-main-label" %>
-              <%= f.text_field :telephone_number, class: "field-first-input form-control" %>
+              <%= f.text_field :telephone_number, class: "field-first-input form-control", placeholder: t("placeholder.telephone_number") %>
             </div>
 
             <div class="field form-group">

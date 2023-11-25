@@ -19,14 +19,14 @@
       <%= tag.div class: row_class do %>
         <%= f.label :name, "商品名", class: label_class %>
         <%= tag.div class: input_class do %>
-         <%= f.text_field :name, class: "form-control", placeholder: "商品名" %>
+         <%= f.text_field :name, class: "form-control", placeholder: t("placeholder.item_name") %>
         <% end %>
       <% end %>
 
       <%= tag.div class: row_class do %>
         <%= f.label :introduction, "商品説明", class: label_class %>
         <%= tag.div class: input_class do %>
-          <%= f.text_area :introduction, class: "form-control", rows: 5, placeholder: "ここに説明文を記述します" %>
+          <%= f.text_area :introduction, class: "form-control", rows: 5, placeholder: t("placeholder.item_introduction") %>
         <% end %>
       <% end %>
 
@@ -41,7 +41,7 @@
         <%= f.label :non_taxed_price, "税抜価格", class: label_class %>
         <%= tag.div class: input_class do %>
           <div class="d-flex align-items-center">
-            <%= f.text_field :non_taxed_price, class: "form-control", placeholder: "1000" %><span class="ml-2">円</span>
+            <%= f.text_field :non_taxed_price, class: "form-control", placeholder: t("placeholder.non_taxed_price") %><span class="ml-2">円</span>
           </div>
         <% end %>
       <% end %>
