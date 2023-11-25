@@ -5,6 +5,7 @@ class Public::SearchesController < ApplicationController
     search_items
     @show_items = @search_items.page(params[:page]).recent_active_items_with_images
     @search_items_count = @search_items.count
+    @genres = Genre.all
   end
 
   private
