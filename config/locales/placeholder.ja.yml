@@ -10,3 +10,7 @@ ja:
     zip_code: "0000000"
     address: 東京都渋谷区代々木神園町0-0
     telephone_number: "0000000000"
+    genre_name: ジャンル名
+    item_name: 商品名
+    item_introduction: ここに説明文を記述します
+    non_taxed_price: "1000"
